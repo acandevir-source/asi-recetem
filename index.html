@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Aşı Reçetem</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600&display=swap">
+<style>
+/* Layout: telefon öncelikli tek sütun; üstte reçete kimliği, ortada aşı kartları, altta hekim. */
+:root{--bg:#f3f6f5;--card:#fff;--ink:#15211f;--muted:#5a6a67;--line:#d6dfdc;--accent:#0b6b60;--accent-soft:#e1f0ec;--warn:#9a5b00;--warn-soft:#fbf0db;--bad:#b0281f;--bad-soft:#fbe4e1;
+--f-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--f-serif:"IBM Plex Serif",Georgia,serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e1514;--card:#151f1d;--ink:#e3ebe8;--muted:#93a4a0;--line:#2a3734;--accent:#43bfae;--accent-soft:#12302c;--warn:#e3a646;--warn-soft:#30250f;--bad:#f08b80;--bad-soft:#381916;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1514;--card:#151f1d;--ink:#e3ebe8;--muted:#93a4a0;--line:#2a3734;--accent:#43bfae;--accent-soft:#12302c;--warn:#e3a646;--warn-soft:#30250f;--bad:#f08b80;--bad-soft:#381916;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.5;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:640px;margin:0 auto;display:grid;gap:14px}
+h1{font-family:var(--f-serif);font-weight:600;font-size:1.5rem;margin:0}
+.meta{color:var(--muted);font-size:.9rem}
+.meta b{color:var(--ink);font-weight:600}
+.mono{font-family:var(--f-mono);font-size:.85rem}
+.next{background:var(--accent-soft);border-radius:12px;padding:14px 16px}
+.next h2{margin:0 0 6px;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+.next ul{margin:0;padding-left:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.card .t{font-weight:600}
+.card .u{color:var(--muted);font-size:.9rem}
+.doses{display:grid;gap:4px;margin-top:4px}
+.dose{display:flex;justify-content:space-between;gap:10px;font-size:.92rem;border-top:1px dashed var(--line);padding-top:4px}
+.dose .d{font-family:var(--f-mono);font-size:.85rem;white-space:nowrap}
+.dose.gecti .d{color:var(--muted)}
+.x{background:var(--bad-soft);color:var(--bad);border-radius:12px;padding:12px 16px;font-size:.92rem}
+.foot{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:10px}
+.empty{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+button{font:500 .95rem var(--f-sans);border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:8px;padding:9px 14px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+(function(){
+"use strict";
+const AD={flu:"Grip (influenza) aşısı",tdap:"Tetanoz-difteri-boğmaca (Tdap) aşısı",td:"Tetanoz-difteri (Td) aşısı",pcv20:"Zatürre (pnömokok) aşısı",ppsv23:"Zatürre (pnömokok, PPSV23) aşısı",rzv:"Zona (herpes zoster) aşısı",rsv:"RSV aşısı",hbv:"Hepatit B aşısı",hav:"Hepatit A aşısı",hab:"Hepatit A + B aşısı",mmr:"Kızamık-kızamıkçık-kabakulak (KKK) aşısı",vari:"Suçiçeği aşısı",hpv:"HPV aşısı",menacwy:"Menenjit (meningokok ACWY) aşısı",menb:"Menenjit (meningokok B) aşısı",hib:"Hib aşısı",ipv:"Çocuk felci (polio) aşısı",kuduz:"Kuduz aşısı (temas öncesi)",covid:"COVID-19 aşısı",tifo:"Tifo aşısı",sari:"Sarıhumma aşısı",je:"Japon ensefaliti aşısı",tbe:"Kene kaynaklı ensefalit aşısı",kolera:"Kolera aşısı",mpox:"Mpox aşısı"};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const app=document.getElementById("app");
+function coz(){
+  const h=(location.hash||"").slice(1);
+  if(!h) return null;
+  try{
+    const bin=atob(h.replace(/-/g,"+").replace(/_/g,"/")); const by=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) by[i]=bin.charCodeAt(i);
+    const p=new TextDecoder().decode(by).split("|");
+    if(p[0]!=="2") return null;
+    const d="20"+p[2].slice(0,2)+"-"+p[2].slice(2,4)+"-"+p[2].slice(4,6);
+    return {n:"R-"+p[2]+"-"+p[1], d, y:p[3]===""?null:+p[3], c:p[4], p:p[5]||"",
+      a:(p[6]||"").split(";").filter(Boolean).map(e=>{ const q=e.split(":"); return [q[0], q[1], (q[2]||"0").split(",").map(Number), q[3]?q[3].split(","):null]; }),
+      x:(p[7]||"").split(",").filter(Boolean)};
+  }catch(e){ return null; }
+}
+const gun=(iso,d)=>{ const t=new Date(iso+"T12:00:00"); t.setDate(t.getDate()+d); return t; };
+const fmt=d=>d.toLocaleDateString("tr-TR",{day:"2-digit",month:"long",year:"numeric"});
+function ciz(){
+  const r=coz();
+  if(!r){ app.innerHTML=`<h1>Aşı Reçetem</h1><div class="empty">Bu sayfa, aşı reçetenizdeki karekodu telefonunuzun kamerasıyla okuttuğunuzda reçetenizi gösterir. Karekodu yeniden okutun ya da reçeteyi yazan polikliniğe başvurun.</div>`; return; }
+  const bugun=new Date(); bugun.setHours(0,0,0,0);
+  const asilar=(r.a||[]).map(([k,urun,off,lbl])=>{
+    const dz=(off||[0]).map((o,i)=>{ const t=gun(r.d,o); return {lbl:(lbl&&lbl[i])||((off||[0]).length>1?`${i+1}. doz`:(k==="flu"?"Her yıl 1 doz":"Tek doz")), t, gecti:t<bugun}; });
+    return {k,urun,dz};
+  });
+  const yakin=asilar.flatMap(a=>a.dz.filter(d=>!d.gecti).map(d=>({...d,ad:AD[a.k]||a.urun}))).sort((x,y)=>x.t-y.t).slice(0,4);
+  app.innerHTML=`
+   <div><h1>Aşı reçeteniz</h1>
+   <div class="meta">${r.p?`<b>${esc(r.p)}</b> · `:""}${r.y!=null?esc(r.y)+" yaş · ":""}Tarih: ${fmt(gun(r.d,0))}<br>Reçete no: <span class="mono">${esc(r.n)}</span></div></div>
+   ${yakin.length?`<div class="next"><h2>Sıradaki dozlarınız</h2><ul>${yakin.map(d=>`<li><b>${fmt(d.t)}</b> · ${esc(d.ad)} (${esc(d.lbl)})</li>`).join("")}</ul></div>`:""}
+   ${asilar.map(a=>`<div class="card"><div class="t">${esc(AD[a.k]||a.urun)}</div><div class="u">${esc(a.urun)}</div>
+     <div class="doses">${a.dz.map(d=>`<div class="dose${d.gecti?" gecti":""}"><span>${esc(d.lbl)}</span><span class="d">${fmt(d.t)}</span></div>`).join("")}</div></div>`).join("")}
+   ${(r.x&&r.x.length)?`<div class="x"><b>Şu an yapılmayacak aşılar:</b> ${r.x.map(k=>esc(AD[k]||k)).join(", ")}. Hekiminize danışmadan yaptırmayın.</div>`:""}
+   <div><button type="button" id="kopya">Listeyi kopyala</button> <span class="meta" id="durum"></span></div>
+   <div class="foot">Doz tarihleri planlanan tarihlerdir; aşı kartınızı saklayın ve her dozda yanınızda getirin. Bu sayfa reçetenin bilgilendirme kopyasıdır; bilgiler yalnızca karekodun içindedir, hiçbir yere kaydedilmez.</div>`;
+  document.getElementById("kopya").onclick=async()=>{
+    const txt=[`Aşı reçetem (${r.n}) - ${fmt(gun(r.d,0))}`].concat(asilar.map(a=>`${AD[a.k]||a.urun} (${a.urun}): `+a.dz.map(d=>`${d.lbl} ${fmt(d.t)}`).join("; "))).join("\n");
+    const s=document.getElementById("durum");
+    try{ await navigator.clipboard.writeText(txt); s.textContent="Kopyalandı."; }catch(e){ s.textContent="Kopyalanamadı."; }
+  };
+}
+ciz(); window.addEventListener("hashchange",ciz);
+})();
+</script>
+</body>
+</html>
