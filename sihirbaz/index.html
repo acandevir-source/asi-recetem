@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Erişkin Aşı Sihirbazı</title>
+<meta name="description" content="EKMUD Erişkin Bağışıklama Rehberi 2026'ya göre risk faktörü temelli erişkin aşı önerisi ve reçete">
+<meta name="theme-color" content="#0b6b60">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Aşı Sihirbazı">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+/* Layout: üstte adım çubuğu, altında tek sütun iş alanı; geniş ekranda sağda yapışkan özet. Reçete önizlemesi her temada beyaz kâğıt. */
+:root{
+  --bg:#f3f6f5; --card:#ffffff; --ink:#15211f; --muted:#5a6a67; --line:#d6dfdc;
+  --accent:#0b6b60; --accent-ink:#ffffff; --accent-soft:#e1f0ec;
+  --warn:#9a5b00; --warn-soft:#fbf0db; --bad:#b0281f; --bad-soft:#fbe4e1;
+  --info:#2c5a86; --info-soft:#e4eef8; --chip:#eef3f1;
+  --f-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1514; --card:#151f1d; --ink:#e3ebe8; --muted:#93a4a0; --line:#2a3734;
+  --accent:#43bfae; --accent-ink:#06201c; --accent-soft:#12302c;
+  --warn:#e3a646; --warn-soft:#30250f; --bad:#f08b80; --bad-soft:#381916;
+  --info:#8fb8e2; --info-soft:#14263a; --chip:#1c2826; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1514; --card:#151f1d; --ink:#e3ebe8; --muted:#93a4a0; --line:#2a3734;
+  --accent:#43bfae; --accent-ink:#06201c; --accent-soft:#12302c;
+  --warn:#e3a646; --warn-soft:#30250f; --bad:#f08b80; --bad-soft:#381916;
+  --info:#8fb8e2; --info-soft:#14263a; --chip:#1c2826; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 10px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand h1{font-family:var(--f-serif);font-weight:600;font-size:1.35rem;margin:0;letter-spacing:-.01em}
+.brand .src{font-size:.8rem;color:var(--muted)}
+.steps{display:flex;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+.steps button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px 6px 8px;font:500 .88rem var(--f-sans);cursor:pointer;display:flex;align-items:center;gap:8px}
+.steps button .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--chip);font:500 .75rem var(--f-mono)}
+.steps button[aria-current="step"]{border-color:var(--accent);background:var(--accent-soft)}
+.steps button[aria-current="step"] .n{background:var(--accent);color:var(--accent-ink)}
+.steps .badge{font:500 .72rem var(--f-mono);background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:0 7px}
+button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;margin-top:20px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}.aside{display:none}}
+.aside{position:sticky;top:120px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.aside h3{margin:0 0 8px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.aside ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.9rem}
+.aside .pt{font-size:.85rem;color:var(--muted);margin:0 0 12px}
+.aside .contra{color:var(--bad);font-size:.85rem;margin-top:10px}
+section.panel{display:grid;gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.card h2{font-family:var(--f-serif);font-weight:600;font-size:1.1rem;margin:0 0 4px}
+.card .sub{color:var(--muted);font-size:.88rem;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+label.f{display:grid;gap:5px;font-size:.84rem;color:var(--muted);min-width:0}
+label.f span{font-weight:500}
+input[type=text],input[type=number],input[type=date],select{width:100%;font:400 .95rem var(--f-sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;border:0;background:var(--bg);color:var(--ink);padding:8px;font:500 .9rem var(--f-sans);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.example{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--info-soft);color:var(--info);border-radius:var(--r);padding:10px 14px;font-size:.88rem}
+.example button{margin-left:auto}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;font:500 .9rem var(--f-sans);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.filter{margin-bottom:12px}
+.group{margin-top:14px}
+.group h3{font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;display:flex;gap:8px;align-items:center}
+.group h3 .cnt{font:500 .72rem var(--f-mono);color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--chip);border-radius:8px;padding:6px 10px;font-size:.88rem;cursor:pointer;max-width:100%}
+.chips label:has(input:checked){background:var(--accent-soft);border-color:var(--accent)}
+.chips input{accent-color:var(--accent);margin:0;flex:0 0 auto}
+.hist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.check input{accent-color:var(--accent)}
+.recs{display:grid;gap:12px}
+.rec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:8px;border-left-width:4px}
+.rec.l-rutin{border-left-color:var(--accent)}
+.rec.l-risk{border-left-color:var(--warn)}
+.rec.l-bagisiklik{border-left-color:var(--info)}
+.rec.l-seyahat{border-left-color:#7a5ab8}
+.rec.l-bilgi{border-left-color:var(--muted)}
+.rec .hd{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.rec .hd .t{font-weight:600;font-size:1rem;flex:1 1 220px;min-width:0}
+.rec .hd .t small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+.pill{font:500 .72rem var(--f-sans);letter-spacing:.03em;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.p-rutin{background:var(--accent-soft);color:var(--accent)}
+.p-risk{background:var(--warn-soft);color:var(--warn)}
+.p-bagisiklik{background:var(--info-soft);color:var(--info)}
+.p-seyahat{background:var(--chip);color:#7a5ab8}
+.p-bilgi{background:var(--chip);color:var(--muted)}
+.p-bad{background:var(--bad-soft);color:var(--bad)}
+.why{display:flex;flex-wrap:wrap;gap:6px}
+.why span{font-size:.78rem;background:var(--chip);border-radius:6px;padding:2px 8px;color:var(--ink)}
+.schema{font-size:.92rem}
+.dates{font:400 .82rem var(--f-mono);color:var(--muted)}
+.note{font-size:.84rem;color:var(--muted)}
+.warnline{font-size:.84rem;color:var(--warn)}
+.rec .ord{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:8px}
+.rec .ord input[type=text],.rec .ord select{flex:1 1 240px;width:auto}
+.rec .ord .qty{width:72px;flex:0 0 auto}
+.contra-list .rec{border-left-color:var(--bad)}
+.sec-title{font-family:var(--f-serif);font-weight:600;font-size:1.05rem;margin:8px 0 0}
+.infos{display:grid;gap:8px}
+.infos div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.88rem}
+.legend{display:flex;flex-wrap:wrap;gap:8px;font-size:.8rem}
+.empty{color:var(--muted);font-size:.9rem;padding:12px 0}
+/* Reçete kâğıdı: bilinçli olarak tek görünüm (beyaz kâğıt, siyah mürekkep) */
+.paper-wrap{overflow-x:auto}
+.paper{background:#ffffff;color:#111;border:1px solid #c9d1cf;border-radius:4px;max-width:794px;margin:0 auto;padding:36px 40px;font-family:var(--f-sans);font-size:13px;line-height:1.45;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.paper .ph{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid #111;padding-bottom:10px;flex-wrap:wrap}
+.paper .ph h2{font-family:var(--f-serif);font-size:20px;margin:0}
+.paper .ph .k{font-size:12px;color:#444}
+.paper .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px 18px;margin:12px 0;font-size:12.5px}
+.paper .meta b{font-weight:600}
+.paper .rx{font-family:var(--f-serif);font-size:26px;font-weight:600;margin:6px 0 2px}
+.paper ol.items{margin:0;padding-left:22px;display:grid;gap:10px}
+.paper ol.items li .pn{font-weight:600}
+.paper ol.items li .ds{color:#333}
+.paper ol.items li .ic{font-family:var(--f-mono);font-size:11px;color:#555}
+.paper table.cal{width:100%;border-collapse:collapse;margin-top:6px;font-size:12px}
+.paper table.cal th,.paper table.cal td{border:1px solid #bbb;padding:4px 6px;text-align:left;vertical-align:top}
+.paper table.cal th{background:#f0f0f0;font-weight:600}
+.paper .foot{display:flex;justify-content:space-between;gap:20px;margin-top:18px;align-items:flex-end;flex-wrap:wrap}
+.paper .qr{display:flex;gap:10px;align-items:center}
+.paper .qr .box{width:160px;height:160px}
+.paper .qr .box svg{width:100%;height:100%;display:block}
+.paper .qr .cap{font-size:11px;color:#333;max-width:170px}
+.paper .sign{min-width:220px;text-align:center;font-size:12px;border-top:1px solid #111;padding-top:6px}
+.paper .disc{font-size:10.5px;color:#555;margin-top:14px;border-top:1px solid #ddd;padding-top:6px}
+.paper h4{font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 4px;color:#333}
+table.arsiv{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:var(--r);font-size:.88rem;min-width:760px}
+table.arsiv th,table.arsiv td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.arsiv th{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+table.arsiv tr.sec td{background:var(--accent-soft)}
+table.arsiv .mono{font-family:var(--f-mono);font-size:.8rem;white-space:nowrap}
+table.arsiv .act{display:flex;gap:6px;flex-wrap:wrap}
+table.arsiv .act .btn{padding:4px 10px;font-size:.8rem}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+#arsivFiltre{width:100%}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.status{font-size:.85rem;color:var(--muted)}
+.qrbig{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.qrbig .box{width:220px;height:220px;background:#fff;padding:8px;border-radius:8px;border:1px solid var(--line)}
+.qrbig .box svg{width:100%;height:100%;display:block}
+.qrbig p{margin:0;max-width:52ch;font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.rec{transition:border-color .2s}}
+@media (max-width:520px){.paper{padding:20px 16px}.paper .rx{font-size:22px}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <h1>Erişkin Aşı Sihirbazı</h1>
+    <span class="src">EKMUD Erişkin Bağışıklama Rehberi 2026 (02.10.2026 sürümü) esas alınmıştır</span><button type="button" class="btn" id="kurBtn" style="margin-left:auto" hidden>Bilgisayara kur</button>
+  </div>
+  <nav class="steps" id="steps" aria-label="Adımlar"></nav>
+</header>
+
+<div class="card" id="kurYardim" hidden style="margin-top:14px"><h2>Uygulamayı bilgisayara kurma</h2><p class="sub" style="margin-bottom:6px">Kurulunca Dock’tan (Windows’ta Başlat menüsünden) ayrı bir pencerede açılır ve internet olmadan da çalışır.</p><ul style="margin:0;padding-left:20px;font-size:.92rem;display:grid;gap:4px"><li><b>Mac, Safari:</b> menüden Dosya → Dock’a Ekle.</li><li><b>Chrome ya da Edge (Mac/Windows):</b> adres çubuğunun sağındaki “Yükle” simgesi ya da menü → Kaydet ve paylaş → Sayfayı uygulama olarak yükle.</li></ul></div>
+<div class="layout">
+  <main id="main"></main>
+  <aside class="aside" id="aside" aria-label="Özet"></aside>
+</div>
+</div>
+
+<script>
+/* Yerel çalışma katmanı: arşiv IndexedDB'de, indirmeler tarayıcıya. */
+(function(){
+  if(window.claude) return;
+  const DBN="asiSihirbazi", ST="receteler";
+  let cache={}, subs=[];
+  const ac=()=>new Promise((ok,no)=>{ const r=indexedDB.open(DBN,1); r.onupgradeneeded=()=>r.result.createObjectStore(ST); r.onsuccess=()=>ok(r.result); r.onerror=()=>no(r.error); });
+  const hazir=ac().then(d=>new Promise((ok,no)=>{ const out={}; const c=d.transaction(ST).objectStore(ST).openCursor(); c.onsuccess=()=>{ const cu=c.result; if(cu){ out[cu.key]=cu.value; cu.continue(); } else { cache=out; ok(d); } }; c.onerror=()=>no(c.error); }));
+  const islem=(fn)=>hazir.then(d=>new Promise((ok,no)=>{ const t=d.transaction(ST,"readwrite"); fn(t.objectStore(ST)); t.oncomplete=()=>ok(); t.onerror=()=>no({code:"quota_exceeded"}); t.onabort=()=>no({code:"quota_exceeded"}); }));
+  const snap=()=>{ const docs=Object.entries(cache).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0)).map(([id,v])=>({id,exists:true,data:()=>v})); return {docs,size:docs.length,empty:!docs.length}; };
+  const yay=()=>{ const s=snap(); subs.forEach(f=>{ try{ f(s); }catch(e){} }); };
+  const coll={ orderBy(){return coll;}, limit(){return coll;},
+    onSnapshot(n,e){ subs.push(n); hazir.then(()=>n(snap())).catch(err=>e&&e({code:"unavailable"})); return ()=>{ subs=subs.filter(x=>x!==n); }; },
+    doc(id){ return { set:async v=>{ await islem(s=>s.put(v,id)); cache[id]=v; yay(); }, delete:async()=>{ await islem(s=>s.delete(id)); delete cache[id]; yay(); } }; } };
+  const db={ collection:()=>coll };
+  const user={ id:async()=>"yerel" };
+  const indir=(blob,ad)=>{ const u=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=u; a.download=ad; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),10000); };
+  const downloads={ save:async({filename,data})=>indir(data instanceof Blob?data:new Blob([data]),filename) };
+  window.claude={ use:async n=>({db,user,downloads})[n]||null };
+  window.yerelArsiv={
+    disaAktar(){ return hazir.then(()=>{ const ad="asi-sihirbazi-arsiv-"+new Date().toISOString().slice(0,10)+".json"; indir(new Blob([JSON.stringify({uygulama:"Erişkin Aşı Sihirbazı",surum:1,tarih:new Date().toISOString(),receteler:cache},null,0)],{type:"application/json"}),ad); return Object.keys(cache).length; }); },
+    async iceAktar(metin){ const j=JSON.parse(metin); const r=j&&j.receteler; if(!r||typeof r!=="object") throw new Error("bicim"); let n=0; const ok=Object.entries(r).filter(([id,v])=>/^[\w.-]{1,60}$/.test(id)&&v&&typeof v==="object"&&typeof v.rxNo==="string"&&typeof v.html==="string"); await islem(s=>ok.forEach(([id,v])=>{ s.put(v,id); n++; })); ok.forEach(([id,v])=>cache[id]=v); yay(); return n; }
+  };
+  if(navigator.storage&&navigator.storage.persist) navigator.storage.persist().catch(()=>{});
+})();
+</script>
+<script>var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,(function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1}))},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(t,r){var e=n("友");if(2!=e.length||38726!=(e[0]<<8|e[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}((function(){return qrcode}));</script>
+<script>
+(function(){
+"use strict";
+
+const YIL = 2026;
+const LS = "asiSihirbazi.v1";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- Aşı kataloğu ---------- */
+const VAC = {
+  flu:{ad:"İnfluenza aşısı (inaktif, standart doz)",tip:"İnaktif",yol:"0,5 mL IM, deltoid",urun:["İnaktif influenza aşısı, standart doz, 2026–2027 mevsimi","Influvac","Vaxigrip"],icd:"Z25.1",bol:"3.2"},
+  tdap:{ad:"Tdap (tetanoz-difteri-aselüler boğmaca)",tip:"Toksoid/inaktif",yol:"0,5 mL IM, deltoid",urun:["Boostrix","Adacel"],icd:"Z27.1",bol:"3.1"},
+  td:{ad:"Td (erişkin tip tetanoz-difteri)",tip:"Toksoid",yol:"0,5 mL IM, deltoid",urun:["Td aşısı (GBP kapsamında, aile sağlığı merkezi)"],icd:"Z27.8",bol:"3.1"},
+  pcv20:{ad:"20 valanlı konjuge pnömokok aşısı (PCV20)",tip:"Konjuge",yol:"0,5 mL IM",urun:["Prevenar 20"],icd:"Z23.8",bol:"3.3"},
+  pcv13:{ad:"13 valanlı konjuge pnömokok aşısı (PCV13)",tip:"Konjuge",yol:"0,5 mL IM",urun:["Prevenar 13"],icd:"Z23.8",bol:"3.3"},
+  ppsv23:{ad:"23 valanlı polisakkarit pnömokok aşısı (PPSV23)",tip:"Polisakkarit",yol:"0,5 mL IM",urun:["Pneumovax 23"],icd:"Z23.8",bol:"3.3"},
+  rzv:{ad:"Rekombinant zona aşısı (RZV)",tip:"Rekombinant, adjuvanlı",yol:"0,5 mL IM",urun:["Shingrix"],icd:"Z25.8",bol:"3.6"},
+  rsv:{ad:"RSV aşısı (pre-F protein)",tip:"Rekombinant protein",yol:"0,5 mL IM, tek doz",urun:["Arexvy","Abrysvo"],icd:"Z25.8",bol:"3.14"},
+  hbv:{ad:"Hepatit B aşısı (rekombinant)",tip:"Rekombinant",yol:"1 mL IM, deltoid",urun:["Engerix-B 20 µg","Euvax B 20 µg","Gen-Hevac B 20 µg"],icd:"Z24.6",bol:"3.4"},
+  hav:{ad:"Hepatit A aşısı (inaktif)",tip:"İnaktif",yol:"1 mL IM, deltoid",urun:["Havrix 1440","Avaxim 160"],icd:"Z24.6",bol:"4.12.3"},
+  hab:{ad:"Kombine hepatit A + B aşısı",tip:"İnaktif + rekombinant",yol:"1 mL IM",urun:["Twinrix Erişkin"],icd:"Z24.6",bol:"3.4"},
+  mmr:{ad:"KKK (kızamık-kızamıkçık-kabakulak)",tip:"Canlı atenüe",yol:"0,5 mL SC",urun:["M-M-R II","Priorix"],icd:"Z27.4",bol:"3.7",canli:true},
+  vari:{ad:"Suçiçeği aşısı (tekli form)",tip:"Canlı atenüe",yol:"0,5 mL SC",urun:["Varivax","Varilrix"],icd:"Z25.8",bol:"3.5",canli:true},
+  hpv:{ad:"9 valanlı HPV aşısı (9vHPV)",tip:"VLP, inaktif",yol:"0,5 mL IM",urun:["Gardasil 9"],icd:"Z25.8",bol:"3.9"},
+  menacwy:{ad:"Konjuge meningokok ACWY aşısı (MenACWY)",tip:"Konjuge",yol:"0,5 mL IM",urun:["Nimenrix","MenQuadfi","Menveo"],icd:"Z23.8",bol:"3.8"},
+  menb:{ad:"Meningokok B aşısı (MenB)",tip:"Protein bazlı",yol:"0,5 mL IM",urun:["Bexsero","Trumenba"],icd:"Z23.8",bol:"3.8"},
+  hib:{ad:"Haemophilus influenzae tip b (Hib) konjuge aşısı",tip:"Konjuge",yol:"0,5 mL IM, deltoid",urun:["Hib konjuge aşı (Act-HIB / Hiberix)"],icd:"Z23.8",bol:"3.10"},
+  ipv:{ad:"İnaktif polio aşısı (İPA)",tip:"İnaktif",yol:"0,5 mL IM",urun:["İnaktif polio aşısı (Imovax Polio)"],icd:"Z24.0",bol:"3.12"},
+  kuduz:{ad:"Kuduz aşısı – temas öncesi profilaksi (TÖP)",tip:"İnaktif, hücre kültürü",yol:"1 mL IM, deltoid",urun:["Hücre kültürü kuduz aşısı (Verorab / Rabipur)"],icd:"Z24.2",bol:"3.11"},
+  covid:{ad:"COVID-19 aşısı (2026–2027 formülü)",tip:"mRNA / protein alt birim",yol:"IM",urun:["Güncel formül (Türkiye'de rutin erişim yok)"],icd:"U11.9",bol:"3.13"},
+  tifo:{ad:"Tifo aşısı (Vi kapsüler polisakkarit)",tip:"Polisakkarit",yol:"0,5 mL IM, tek doz",urun:["Typhim Vi"],icd:"Z23.1",bol:"4.12.6"},
+  sari:{ad:"Sarıhumma aşısı (17D)",tip:"Canlı atenüe",yol:"0,5 mL SC, tek doz",urun:["Stamaril (Seyahat Sağlığı Merkezi)"],icd:"Z24.3",bol:"4.12.14",canli:true},
+  je:{ad:"Japon ensefaliti aşısı (inaktif)",tip:"İnaktif",yol:"0,5 mL IM",urun:["Ixiaro"],icd:"Z24.1",bol:"4.12.9"},
+  tbe:{ad:"Kene kaynaklı ensefalit aşısı",tip:"İnaktif",yol:"0,5 mL IM",urun:["FSME-IMMUN","Encepur"],icd:"Z24.1",bol:"4.12.10"},
+  kolera:{ad:"Oral kolera aşısı",tip:"İnaktif, oral",yol:"Oral",urun:["Dukoral"],icd:"Z23.0",bol:"4.12.11"},
+  mpox:{ad:"Mpox aşısı (MVA-BN)",tip:"Replike olmayan vektör",yol:"0,5 mL SC",urun:["MVA-BN (Imvanex / Jynneos)"],icd:"Z25.8",bol:"4.12.20"}
+};
+
+/* ---------- Ürünler: [ad, firma, durum, not, grup]  durum: "yok" = rehbere göre Türkiye'de yok ---------- */
+const PROD = {
+  flu:[
+    ["Vaxigrip (trivalan)","Sanofi","","","Standart doz inaktif – yumurta bazlı (Türkiye'deki tek tip)"],
+    ["Influvac (trivalan)","Abbott","","","Standart doz inaktif – yumurta bazlı (Türkiye'deki tek tip)"],
+    ["Fluarix (trivalan)","GSK","","","Standart doz inaktif – yumurta bazlı (Türkiye'deki tek tip)"],
+    ["Flucelvax","CSL Seqirus","yok","Hücre kültürü, yumurta içermez","Hücre kültürü bazlı inaktif"],
+    ["Supemtek / Flublok","Sanofi","yok","Rekombinant, 45 µg HA, ≥9 yaş","Rekombinant"],
+    ["Efluelda / Fluzone High-Dose","Sanofi","yok","60 µg HA, ≥65 yaş","Yüksek doz inaktif"],
+    ["Fluad","CSL Seqirus","yok","MF59 adjuvanlı, ≥65 yaş","Adjuvanlı inaktif"],
+    ["Fluenz / FluMist (nazal)","AstraZeneca","yok","Canlı, 2–49 yaş; gebelik ve immünsüpresyonda verilmez","Canlı atenüe (nazal)"]],
+  tdap:[["Boostrix","GSK"],["Adacel","Sanofi"],["Boostrix Polio (Tdap-İPA)","GSK","","Polio rapeli de gerekiyorsa"],["Adacel Polio (Tdap-İPA)","Sanofi","","Polio rapeli de gerekiyorsa"]],
+  td:[["Td aşısı (erişkin tip) – GBP, aile sağlığı merkezi",""]],
+  pcv20:[["Prevenar 20 (PCV20)","Pfizer"],["Capvaxive (PCV21)","MSD","yok"],["Vaxneuvance (PCV15) + PPSV23","MSD","yok","Ruhsatlı, piyasada yok"],["Prevenar 13 (PCV13) + PPSV23","Pfizer","","PCV20'ye ulaşılamazsa"]],
+  ppsv23:[["Pneumovax 23","MSD"]],
+  rzv:[["Shingrix","GSK"]],
+  rsv:[["Arexvy","GSK","","AS01E adjuvanlı; ≥75 yaş, 50–74 riskli"],["Abrysvo","Pfizer","","Bivalan; gebelikte ruhsatlı tek RSV aşısı"],["mRESVIA","Moderna","yok","mRNA"]],
+  hbv:[["Engerix-B 20 µg/1 mL","GSK"],["Euvax B 20 µg/1 mL","LG Chem"],["Genhevac B 20 µg","Sanofi"],["HBVaxPro 10 µg","MSD"],["Fendrix 20 µg (diyaliz)","GSK","","Adjuvanlı, böbrek yetmezliğinde"],["Heplisav-B","Dynavax","yok","2 doz şema; Türkiye'de rutin kullanımda değil"]],
+  hav:[["Havrix 1440","GSK"],["Avaxim 160","Sanofi"],["Vaqta 50 U","MSD"]],
+  hab:[["Twinrix Erişkin","GSK"]],
+  mmr:[["M-M-R II","MSD","","Jelatin ve neomisin içerir"],["Priorix","GSK","","Neomisin içerir; jelatin içermez"]],
+  vari:[["Varivax","MSD","","Jelatin ve neomisin içerir"],["Varilrix","GSK","","Neomisin içerir"]],
+  hpv:[["Gardasil 9 (9vHPV)","MSD"],["Gardasil (4vHPV)","MSD","","9 valanlı tercih edilir"],["Cervarix (2vHPV)","GSK","","Yalnız kadınlarda; lateks anafilaksisinde kontrendike"]],
+  menacwy:[["Nimenrix (MenACWY-TT)","Pfizer"],["MenQuadfi (MenACWY-TT)","Sanofi"],["Menveo (MenACWY-CRM)","GSK"]],
+  menb:[["Bexsero (MenB-4C)","GSK","","0, 1–2, 6. ay; birbirinin yerine kullanılmaz"],["Trumenba (MenB-FHbp)","Pfizer","","Birbirinin yerine kullanılmaz"]],
+  hib:[["Act-HIB","Sanofi"],["Hiberix","GSK"]],
+  ipv:[["Imovax Polio","Sanofi"],["Boostrix Polio (Tdap-İPA)","GSK","","Td/Tdap da gerekiyorsa"]],
+  kuduz:[["Verorab","Sanofi","","Kuduz aşı merkezleri"],["Rabipur","Bavarian Nordic","","Kuduz aşı merkezleri"]],
+  covid:[["Comirnaty (2026–2027)","Pfizer/BioNTech","yok"],["Spikevax (2026–2027)","Moderna","yok"],["mNEXSPIKE (2026–2027)","Moderna","yok"],["Nuvaxovid (2026–2027)","Novavax","yok"]],
+  tifo:[["Typhim Vi (enjeksiyon)","Sanofi"],["Vivotif (oral, canlı Ty21a)","Bavarian Nordic","","4 kapsül gün aşırı; immünsüpresyonda verilmez"]],
+  sari:[["Stamaril","Sanofi","","Seyahat Sağlığı Merkezlerinde"]],
+  je:[["Ixiaro","Valneva"]],
+  tbe:[["FSME-IMMUN","Pfizer"],["Encepur","Bavarian Nordic"]],
+  kolera:[["Dukoral","Valneva"]],
+  mpox:[["Imvanex / Jynneos (MVA-BN)","Bavarian Nordic"]]
+};
+const prodLabel = p => p[0] + (p[1]?` – ${p[1]}`:"") + (p[2]==="yok"?" · Türkiye'de yok":"");
+function prodNote(vac,label){ const p=(PROD[vac]||[]).find(x=>prodLabel(x)===label); return p&&p[3]?p[3]:""; }
+
+/* ---------- Risk faktörleri ---------- */
+const RISK = [
+ {g:"Kronik hastalıklar", items:[
+  ["akciger","Kronik akciğer hastalığı (KOAH, astım, İAH, kistik fibroz)"],
+  ["kalp","Kronik kalp-damar hastalığı (izole HT hariç)"],
+  ["dm","Diyabetes mellitus"],
+  ["dmKomp","Komplike DM (insülin/SGLT2i ya da organ hasarı)"],
+  ["kbh","Kronik böbrek hastalığı (evre 1–3)"],
+  ["kbhIleri","İleri KBH (evre 4–5) / hemodiyaliz"],
+  ["nefrotik","Nefrotik sendrom"],
+  ["karaciger","Kronik karaciğer hastalığı / siroz"],
+  ["hemoglobinopati","Orak hücre hastalığı, talasemi, diğer hemoglobinopati"],
+  ["obezite","Ağır obezite (VKİ ≥40 kg/m²)"],
+  ["noro","Nörolojik/nöromüsküler hastalık (yutma, sekresyon temizliği bozuk)"],
+  ["inme","İnme öyküsü"],
+  ["koklear","Koklear implant"],
+  ["bos","BOS kaçağı"],
+  ["alkol","Alkol kullanım bozukluğu"],
+  ["sigara","Sigara kullanımı"],
+  ["kirilgan","Kırılganlık, bakıma muhtaçlık"]]},
+ {g:"Bağışıklık durumu", items:[
+  ["hiv200","HIV ile yaşıyor, CD4 ≥200/mm³"],
+  ["hivlt200","HIV ile yaşıyor, CD4 <200/mm³"],
+  ["hemMal","Hematolojik malignite"],
+  ["solidTm","Solid tümör"],
+  ["kemo","Aktif kemoterapi/radyoterapi"],
+  ["hkhn","Hematopoetik kök hücre nakli alıcısı"],
+  ["carT","CAR-T tedavisi almış"],
+  ["sonAday","Solid organ nakli adayı"],
+  ["sonAlici","Solid organ nakli alıcısı"],
+  ["pid","Primer (doğuştan) immün yetmezlik"],
+  ["aspleni","Anatomik/fonksiyonel aspleni"],
+  ["splenPlan","Splenektomi planlanıyor"],
+  ["kompEks","Kalıcı kompleman eksikliği"],
+  ["kompInh","Kompleman inhibitörü (ekulizumab, ravulizumab)"],
+  ["romato","Otoimmün/romatolojik hastalık"],
+  ["isTedavi","İmmünsüpresif/biyolojik tedavi alıyor"],
+  ["isPlan","İmmünsüpresif tedavi planlanıyor"],
+  ["steroid","Prednizon ≥20 mg/gün, >14 gün"],
+  ["antiCD20","Rituksimab / anti-CD20 (son 6 ay)"],
+  ["behcet","Behçet hastalığı veya CAPS"]]},
+ {g:"Meslek ve yaşam", items:[
+  ["saglik","Sağlık çalışanı / sağlık alanı öğrencisi"],
+  ["lab","Laboratuvarda N. meningitidis ile rutin çalışma"],
+  ["hayvan","Hayvanlarla çalışma (veteriner, barınak, mağara/yarasa)"],
+  ["doga","Yaban hayatı temaslı doğa sporları"],
+  ["bakimevi","Bakımevi/huzurevinde kalıyor"],
+  ["topluYasam","Cezaevi, kamp vb. toplu yaşam"],
+  ["universite","Yükseköğretim öğrencisi"],
+  ["yurt1","Yurtta kalan 1. sınıf üniversite öğrencisi"],
+  ["asker","Askerlik görevini yapan acemi"],
+  ["ogretmen","Öğretmen / kreş çalışanı"],
+  ["isEvHalki","Bağışıklığı baskılanmış kişinin ev halkı"],
+  ["bebekTemas","Bebekle (<1 yaş) yakın temaslı"],
+  ["bakimVeren","Riskli bireye bakım veren"],
+  ["gocmen","Göçmenlere hizmet veren (OPA belgesi yok)"],
+  ["salgin","Salgın / yakın zamanda kızamık-kabakulak-kızamıkçık teması"]]},
+ {g:"Hepatit B / A bulaş riski", items:[
+  ["kanUrunu","Sık kan/kan ürünü kullanımı"],
+  ["ivdu","Damar içi madde kullanımı"],
+  ["cinsel","Çok sayıda cinsel eş / para karşılığı cinsel ilişki"],
+  ["msm","Erkeklerle cinsel ilişkiye giren erkek"],
+  ["hbsagTemas","HBsAg pozitif kişinin ev içi/cinsel teması"],
+  ["hbvMeslek","Berber-kuaför, manikür; güvenlik/ilk yardım; tıbbi atık; cezaevi/geri gönderme merkezi personeli"],
+  ["dovme","Dövme/piercing planlıyor"],
+  ["evsiz","Evsizlik"]]},
+ {g:"Seyahat", items:[
+  ["sHac","Hac / Umre"],
+  ["sMenKusak","Afrika menenjit kuşağı / hiperendemik bölge"],
+  ["sSari","Sarıhumma riskli bölge (Tropikal Afrika, Amazon)"],
+  ["sPolio","Polio dolaşımı olan ülke (Pakistan, Afganistan)"],
+  ["sHav","Hepatit A riskli bölge (kırsal, düşük hijyen)"],
+  ["sHbv","HBV yüksek endemik bölgede uzun kalış/yakın temas"],
+  ["sTifo","Tifo endemik bölge (Güney Asya, Kuzey/Batı Afrika, Peru)"],
+  ["sKuduz","Kuduz riskli, tıbbi bakıma erişimi kısıtlı bölge"],
+  ["sJe","Asya kırsalı, mevsiminde >2 hafta"],
+  ["sTbe","Avrupa/Rusya endemik ormanlık alan (kene)"],
+  ["sKolera","Kolera salgın bölgesi / insani yardım, mülteci kampı"],
+  ["sMpox","Mpox salgın bölgesinde yüksek riskli temas"],
+  ["sDengue","Dengue / Chikungunya bölgesi"],
+  ["sYuksekRisk","Sağlık/yardım organizasyonu, göçmen kampı görevi"]]},
+ {g:"Alerji ve diğer", items:[
+  ["aMaya","Maya (S. cerevisiae) anafilaksisi"],
+  ["aNeomisin","Neomisin anafilaksisi"],
+  ["aJelatin","Jelatin anafilaksisi"],
+  ["aYumurta","Ağır yumurta alerjisi"],
+  ["ivig","Son 11 ayda IVIG/kan ürünü"],
+  ["tbc","Tedavi edilmemiş tüberküloz"]]}
+];
+const RLABEL = {}; RISK.forEach(g=>g.items.forEach(([k,l])=>RLABEL[k]=l));
+
+/* ---------- Durum ---------- */
+const ORNEK = {
+  p:{ad:"Örnek Hasta",dy:1959,cins:"E",gebe:"yok",hafta:"",prot:"",tarih:new Date().toISOString().slice(0,10)},
+  r:["dm","dmKomp","akciger","sigara"],
+  h:{covid:"eski",covidEnf:false,td:"gt10",tdap:false,pn:"yok",rzv:"0",rsv:false,hpv:"0",flu:false,menacwy:"yok",menb:"yok",hbv:"bilinmiyor",hav:"bilinmiyor",kkkDoz:"0",kiz:"bagisik",kab:"bagisik",kzc:"bagisik",variDoz:"0",variIgg:"bilinmiyor",variOyku:"suc"}
+};
+const BOS_DURUM = {
+  p:{ad:"",dy:"",cins:"K",gebe:"yok",hafta:"",prot:"",tarih:new Date().toISOString().slice(0,10)},
+  r:[],
+  h:{covid:"yok",covidEnf:false,td:"bilinmiyor",tdap:false,pn:"yok",rzv:"0",rsv:false,hpv:"0",flu:false,menacwy:"yok",menb:"yok",hbv:"bilinmiyor",hav:"bilinmiyor",kkkDoz:"0",kiz:"bilinmiyor",kab:"bilinmiyor",kzc:"bilinmiyor",variDoz:"0",variIgg:"bilinmiyor",variOyku:"yok"}
+};
+let S = JSON.parse(JSON.stringify(ORNEK));
+S.r = new Set(S.r);
+let ornekMi = true;
+let step = 0;
+let sel = {};           // id -> {on, urun, adet}
+let hekim = {ad:"",unvan:"Uzm. Dr.",tescil:"",kurum:"",birim:"Erişkin Aşı Polikliniği",adQR:true,qrMod:"link",sayfa:"https://acandevir-source.github.io/asi-recetem/",gh:true};
+try{ const v = JSON.parse(localStorage.getItem(LS)||"null"); if(v&&v.hekim) Object.assign(hekim,v.hekim); }catch(e){}
+const linkHazir=()=>/^https:\/\/[^\s#]+$/.test(hekim.sayfa||"") && !/claude\.ai\/artifact/.test(hekim.sayfa);
+const VARSAYILAN_SAYFA="https://acandevir-source.github.io/asi-recetem/";
+if(!hekim.gh){ hekim.gh=true; if(!hekim.sayfa){ hekim.sayfa=VARSAYILAN_SAYFA; hekim.qrMod="link"; } }
+if(!linkHazir()) hekim.qrMod="metin";
+function saveHekim(){ try{ localStorage.setItem(LS, JSON.stringify({hekim})); }catch(e){} }
+let rxNo = "R-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+
+/* ---------- Kural motoru ---------- */
+function compute(){
+  const has = k => S.r.has(k);
+  const H = S.h;
+  const dy = parseInt(S.p.dy,10);
+  const age = isFinite(dy) ? YIL - dy : null;
+  const A = age ?? 40;
+  const K = S.p.cins === "K";
+  const gebe = K && S.p.gebe === "gebe";
+  const hivAny = has("hiv200")||has("hivlt200");
+  const travel = RISK[4].items.some(([k])=>has(k));
+  const immComp = hivAny||has("hemMal")||has("kemo")||has("solidTm")||has("hkhn")||has("carT")||has("sonAlici")||has("pid")||has("isTedavi")||has("steroid")||has("antiCD20");
+  const agirIS = has("hivlt200")||has("hemMal")||has("kemo")||has("hkhn")||has("carT")||has("sonAlici")||has("pid")||has("isTedavi")||has("steroid")||has("antiCD20");
+  const liveWhy = [];
+  if(gebe) liveWhy.push("Gebelik");
+  if(has("hivlt200")) liveWhy.push("HIV, CD4 <200/mm³");
+  if(has("hemMal")) liveWhy.push("Hematolojik malignite (bireysel değerlendirme)");
+  if(has("kemo")) liveWhy.push("Aktif kemoterapi (bitiminden ≥3 ay sonra)");
+  if(has("hkhn")) liveWhy.push("HKHN: nakilden ≥24 ay, GVHH ve immünsüpresyon yoksa");
+  if(has("carT")) liveWhy.push("CAR-T: ≥12 ay ve immün rekonstitüsyon sonrası");
+  if(has("sonAlici")) liveWhy.push("Solid organ nakli alıcısı");
+  if(has("pid")) liveWhy.push("Primer immün yetmezlik");
+  if(has("isTedavi")) liveWhy.push("İmmünsüpresif/biyolojik tedavi");
+  if(has("steroid")) liveWhy.push("Prednizon ≥20 mg/gün >14 gün");
+  if(has("antiCD20")) liveWhy.push("Anti-CD20: son dozdan ≥6 ay");
+  if(has("ivig")) liveWhy.push("Son 11 ayda IVIG/kan ürünü (3–11 ay beklenir)");
+
+  const recs = {}; const contra = []; const info = [];
+  const add = (key, o) => {
+    if(recs[key]){ recs[key].why = [...new Set([...recs[key].why, ...(o.why||[])])]; return recs[key]; }
+    recs[key] = Object.assign({key, vac:key, level:"rutin", why:[], schema:"", doses:[0], doseLbl:null, notes:[], warn:[], orderable:true, onDefault:true}, o);
+    return recs[key];
+  };
+  const toContra = (key, vac, why, reasons) => contra.push({key, vac, why, reasons});
+
+  /* İnfluenza (3.2) */
+  if(!H.flu){
+    const w=[];
+    if(A>=50) w.push("50 yaş ve üzeri");
+    ["akciger","kalp","dm","kbh","kbhIleri","karaciger","hemoglobinopati","noro","inme","obezite","bakimevi","saglik","topluYasam","bakimVeren","isEvHalki","kirilgan","nefrotik"].forEach(k=>has(k)&&w.push(RLABEL[k]));
+    if(immComp) w.push("Bağışıklık baskılanması");
+    if(gebe) w.push("Gebelik");
+    const r = add("flu",{level:w.length?"risk":"rutin", why:w.length?w:["6 aydan büyük herkese önerilir"], schema:"Her yıl 1 doz; tercihen Ekim–Kasım, mevsim boyunca uygulanabilir."});
+    if(A>=65||immComp) r.notes.push("Yüksek doz/adjuvanlı/rekombinant aşı önerilir ancak Türkiye'de bulunmadığından standart doz ile aşılanır.");
+    if(gebe) r.notes.push("Gebeliğin her trimesterinde uygulanabilir.");
+    if(has("sonAlici")) r.notes.push("Nakil sezona denk gelirse 1. aydan itibaren uygulanabilir; 3–6 ay sonra tekrarı önerilir.");
+    if(has("aYumurta")) r.notes.push("Yumurta alerjisi influenza aşısı için kontrendikasyon değildir.");
+  }
+
+  /* Tetanoz-difteri-boğmaca (3.1, 4.8) */
+  if(gebe){
+    add("tdap",{key:"tdap",level:"rutin",why:["Gebelik"],schema:"Her gebelikte 1 doz Tdap, 27–36. gebelik haftası."});
+    if(H.td==="eksik"||H.td==="bilinmiyor") add("td",{level:"rutin",why:["Primer seri eksik/bilinmiyor"],schema:"Hiç aşılanmamış gebe en az 2 doz almalı (biri Tdap); 2. doz doğumdan ≥2 hafta önce.",doses:[0,30],doseLbl:["Td 1. doz","Td 2. doz"]});
+  } else if(has("hkhn")){
+    add("tdap",{level:"risk",why:["HKHN sonrası yeniden aşılama"],schema:"Nakilden 6. ayda başlayarak 1 ay arayla 3 doz: 1 doz Tdap, ardından 2 doz Td.",doses:[0,30,60],doseLbl:["Tdap","Td","Td"]});
+  } else if(H.td==="eksik"||H.td==="bilinmiyor"){
+    const w=["Primer seri eksik / aşı öyküsü bilinmiyor"];
+    if(isFinite(dy)&&dy<1985) w.push("1985 öncesi doğum, kayıt yok: aşısız kabul edilir");
+    add("tdap",{level:"rutin",why:w,schema:"Primer seri: 1. doz Tdap, 4 hafta sonra Td, 2. dozdan 6 ay sonra Td (0., 1., 7. ay). Sonra 10 yılda bir Td.",doses:[0,30,210],doseLbl:["Tdap","Td","Td"]});
+  } else if(H.td==="gt10" || (H.td==="5_10" && travel)){
+    const k = H.tdap ? "td" : "tdap";
+    add(k,{level:"rutin",why:[H.td==="gt10"?"Son dozun üzerinden >10 yıl":"Yüksek riskli seyahat: rapel aralığı 5 yıla inebilir"].concat(H.tdap?[]:["Erişkin dönemde Tdap yapılmamış"]),schema:"Tek doz rapel; sonra 10 yılda bir Td."});
+  } else if(!H.tdap){
+    const w=[]; if(has("saglik")) w.push("Sağlık çalışanı"); if(has("bebekTemas")) w.push("Bebekle yakın temas"); if(A>=65) w.push("İleri yaş"); if(has("akciger")) w.push("Kronik akciğer hastalığı");
+    if(immComp||has("kbh")||has("kbhIleri")||has("dm")) w.push("Kronik hastalık/immünsüpresyon");
+    if(w.length) add("tdap",{level:"risk",why:w.concat(["Erişkin dönemde Tdap yapılmamış"]),schema:"Bir doz Tdap (sonraki rapel zamanı beklenmeden)."});
+    else info.push("Primer seri tamam ve son Td 10 yıldan yeni: bir sonraki 10 yıllık rapelin Tdap olarak yapılması önerilir.");
+  }
+
+  /* Pnömokok (3.3, 4.x) */
+  const pnW=[];
+  if(A>=50) pnW.push("50 yaş ve üzeri");
+  ["akciger","kalp","dm","karaciger","alkol","sigara","bakimevi","aspleni","splenPlan","hemoglobinopati","kbh","kbhIleri","nefrotik","koklear","bos","sonAday"].forEach(k=>has(k)&&pnW.push(RLABEL[k]));
+  if(immComp) pnW.push("Bağışıklık baskılanması");
+  if(has("romato")&&(A>=50||has("isTedavi")||has("isPlan"))) pnW.push("Romatolojik hastalık");
+  const pnHizli = immComp||has("aspleni")||has("splenPlan")||has("hemoglobinopati")||has("bos")||has("koklear")||has("kbhIleri")||has("nefrotik");
+  if(has("hkhn")){
+    add("pcv20",{level:"risk",why:["HKHN sonrası yeniden aşılama"],schema:"Nakilden 3–6 ay sonra başlayarak 1–2 ay arayla 3 doz PCV20; 3. dozdan 6 ay sonra 4. doz.",doses:[0,45,90,270],doseLbl:["1. doz","2. doz","3. doz","4. doz"]});
+  } else if(pnW.length){
+    const lvl = (A>=50 && pnW.length===1) ? "rutin" : "risk";
+    const alt = pnHizli ? "PCV13 ve en az 8 hafta sonra PPSV23" : "PCV13 ve 1 yıl sonra PPSV23";
+    if(H.pn==="yok"||H.pn==="bilinmiyor"){
+      const r=add("pcv20",{level:lvl,why:pnW,schema:"Tek doz PCV20 (PCV21 Türkiye'de yok). PPSV23 gerekmez."});
+      r.notes.push("PCV20'ye ulaşılamazsa: "+alt+".");
+      if(has("splenPlan")||has("isPlan")) r.notes.push("Splenektomi/immünsüpresif tedaviden en az 2 hafta önce; acil splenektomide en erken 14. gün.");
+    } else if(H.pn==="pcv13"){
+      const r=add("pcv20",{level:lvl,why:pnW.concat(["Önceden yalnız PCV13"]),schema:"PCV13'ten en az 1 yıl sonra tek doz PCV20."});
+      r.notes.push(pnHizli?"Alternatif: PCV13'ten ≥8 hafta sonra PPSV23.":"Alternatif: PCV13'ten ≥1 yıl sonra PPSV23.");
+    } else if(H.pn==="ppsv23"){
+      add("pcv20",{level:lvl,why:pnW.concat(["Önceden yalnız PPSV23"]),schema:"PPSV23'ten en az 1 yıl sonra tek doz PCV20."});
+    } else if(H.pn==="pcv13ppsv23_lt65"||H.pn==="pcv13ppsv23_ge65"){
+      const ek = (H.pn==="pcv13ppsv23_lt65"&&A>=65) || has("sonAday")||has("sonAlici")||has("kbh")||has("kbhIleri")||(has("dm")&&A>=50);
+      if(ek) add("pcv20",{level:lvl,why:pnW.concat(["PCV13 + PPSV23 sonrası ek doz endikasyonu"]),schema:"Son pnömokok dozundan en az 5 yıl sonra tek doz PCV20."});
+      else info.push("Pnömokok: PCV13 ve PPSV23 tamamlanmış; rutin tekrar gerekmez"+(H.pn==="pcv13ppsv23_ge65"?" (PPSV23 65 yaşından sonra yapılmışsa karar kişiye özel; verilecekse PCV20).":"."));
+    } else if(H.pn==="pcv20"){
+      info.push("Pnömokok: PCV20 yapılmış; PPSV23 veya ek doz gerekmez.");
+    }
+    if(recs.pcv20 && immComp) recs.pcv20.notes.push("Risk sürüyorsa 5 yıl sonra rapel değerlendirilebilir (5 yıl arayla toplam 4 doza kadar; biri tercihen 65 yaş sonrası).");
+    if(recs.pcv20 && has("behcet")) recs.pcv20.warn.push("Behçet/CAPS: PPSV23 ciddi enflamatuvar reaksiyon yapabilir; PCV20 tercih edilmeli.");
+  }
+
+  /* Hepatit B (3.4) */
+  const hbW=[];
+  [["saglik"],["kbhIleri"],["sonAday"],["sonAlici"],["hkhn"],["kanUrunu"],["ivdu"],["hbsagTemas"],["cinsel"],["msm"],["karaciger"],["topluYasam"],["hbvMeslek"],["dovme"],["sHbv"],["kbh"],["dm"],["romato"],["hemMal"],["solidTm"]].forEach(([k])=>has(k)&&hbW.push(RLABEL[k]));
+  if(hivAny) hbW.push("HIV");
+  if(has("isTedavi")||has("isPlan")) hbW.push("İmmünsüpresif tedavi (reaktivasyon riski)");
+  if(H.hbv==="bagisik"){ /* gerek yok */ }
+  else if(H.hbv==="yanitsiz"){ info.push("Hepatit B: iki tam seriye rağmen anti-HBs <10 mIU/mL (aşıya yanıtsız). Riskli temasta HBIG ile korunma planlanır."); }
+  else if(H.hbv==="hbsag"){ toContra("hbv","hbv",["HBsAg pozitif"],["Kronik/aktif HBV enfeksiyonu: aşı endike değil, uzmana yönlendirin","Ev halkı ve cinsel partner taranmalı, bağışık değilse aşılanmalı"]); }
+  else if(H.hbv==="izole"){
+    const r=add("hbv",{level:"risk",onDefault:false,why:["İzole anti-HBc pozitifliği (HBsAg ve anti-HBs negatif)"].concat(hbW),schema:"Önce HBV-DNA ile gizli (okült) HBV enfeksiyonu dışlanmalı; aşılama uzman değerlendirmesiyle planlanır."});
+    r.warn.push("Standart aşı serisi doğrudan başlanmaz; hasta uzmana yönlendirilir.");
+    if(immComp||has("isPlan")||has("romato")) r.notes.push("İmmünsüpresif tedavi (rituksimab, yüksek doz steroid, anti-TNF vb.) alacaksa reaktivasyon riskine göre kemoprofilaksi değerlendirilmeli.");
+  }
+  else if(H.hbv==="asili"){
+    if(has("saglik")||has("kbhIleri")||immComp||hivAny||has("ivdu")||has("hbsagTemas")) info.push("Hepatit B: 3 doz aşı kaydı var, yanıt bilinmiyor. Bu risk grubunda anti-HBs bakılmalı; <10 mIU/mL ise ikinci seri (sağlık çalışanında algoritmaya göre) uygulanır.");
+    else info.push("Hepatit B: 3 doz aşı kaydı var; immünkompetan kişide rutin anti-HBs kontrolü ve rapel gerekmez.");
+  }
+  else if(H.hbv==="degil" || hbW.length){
+    let schema="0., 1. ve 6. aylarda 20 µg (3 doz).", doses=[0,30,180];
+    const cift = has("hemMal")||has("solidTm")||has("sonAday")||has("sonAlici")||has("hkhn")||has("hivlt200");
+    if(has("kbhIleri")){ schema="0., 1., 2. ve 6. aylarda çift doz (40 µg) – toplam 4 doz."; doses=[0,30,60,180]; }
+    else if((has("romato")||has("isTedavi"))&&(has("isTedavi")||has("steroid")||has("antiCD20"))){ schema="İmmünsüpresif tedavi altında: 0., 1., 2. ve 6. aylarda çift doz (40 µg)."; doses=[0,30,60,180]; }
+    else if(cift){ schema="0., 1. ve 6. aylarda çift doz (40 µg)."; }
+    const r=add("hbv",{level:H.hbv==="degil"?"bagisiklik":"risk",onDefault:H.hbv==="degil",why:(H.hbv==="degil"?["Serolojik olarak bağışık değil"]:[]).concat(hbW),schema,doses});
+    if(H.hbv==="bilinmiyor") r.warn.push("Önce HBsAg, anti-HBs, anti-HBc total bakılmalı; yalnızca üçü de negatifse aşılanır. HBsAg veya izole anti-HBc pozitifse uzmana yönlendirilir.");
+    if(has("saglik")||has("kbhIleri")||immComp||has("ivdu")||has("hbsagTemas")) r.notes.push("Son dozdan 1–2 ay sonra anti-HBs bakılmalı; <10 mIU/mL ise 3 dozluk seri tekrarlanır.");
+    if(isFinite(dy)&&dy>=1991&&dy<=1999) r.notes.push("1991–1999 doğumlular 2005–2009 tamamlayıcı programda aşılanmış olabilir; kayıt kontrol edilmeli.");
+    if(isFinite(dy)&&dy>=1998) r.notes.push("1998 sonrası doğumlu: ulusal programla aşılanmış olabilir; kayıt kontrol edilmeli.");
+    if(has("sHbv")) r.notes.push("Seyahate kadar süre yetmezse hızlı şema: 0., 7., 21. gün + 12. ay.");
+    if(gebe) r.notes.push("Gebelik ve emzirme kontrendikasyon değildir.");
+  }
+
+  /* Hepatit A */
+  const haW=[];
+  ["karaciger","sonAday","sonAlici","hkhn","hemMal","solidTm","romato","kbh","kbhIleri","dm","msm","ivdu","evsiz","sHav","saglik"].forEach(k=>has(k)&&haW.push(RLABEL[k]));
+  if(hivAny) haW.push("HIV");
+  if(H.hav==="igg"||H.hav==="gecirilmis"||H.hav==="asi2"){ /* bağışık kabul */ }
+  else if(H.hav==="asi1"){
+    add("hav",{level:"bagisiklik",why:["Tek doz hepatit A aşısı yapılmış"].concat(haW),schema:"Eksik 2. doz; ilk dozdan 6–12 ay sonra (gecikmişse seri yeniden başlatılmaz)."});
+  }
+  else if(H.hav==="degil"||haW.length){
+    const r=add("hav",{level:H.hav==="degil"?"bagisiklik":(has("sHav")&&haW.length===1?"seyahat":"risk"),onDefault:H.hav==="degil"||has("sHav"),why:(H.hav==="degil"?["Serolojik olarak bağışık değil (anti-HAV IgG negatif)"]:[]).concat(haW),schema:"2 doz: 0. ve 6–12. ay.",doses:[0,180]});
+    if(H.hav==="bilinmiyor") r.warn.push("Aşı öncesi anti-HAV IgG bakılması önerilir (özellikle ≥40 yaş, sarılık öyküsü ya da endemik bölgede yaşamış olanlar); seronegatifse aşılanır.");
+    if(has("sHav")) r.notes.push("İlk doz seyahatten en az 2 hafta önce.");
+    if(has("saglik")&&haW.length===1) r.notes.push("Sağlık çalışanında öncelik: enfeksiyon hastalıkları, pediatri, acil, yoğun bakım ve dışkı örneğiyle çalışan laboratuvar personeli.");
+  }
+  if(recs.hbv && recs.hav && recs.hbv.doses.length===3 && !/çift/.test(recs.hbv.schema)) recs.hav.notes.push("Her iki aşı da gerekiyorsa kombine HAV+HBV aşısı (0-1-6 ay; hızlı şema 0., 7., 21–30. gün + 12. ay) kullanılabilir.");
+
+  /* KKK (3.7): kızamık, kabakulak, kızamıkçık ayrı ayrı */
+  const dogumOk = !isFinite(dy) || dy>=1957;
+  const kkkDoz = parseInt(H.kkkDoz,10)||0;
+  if(kkkDoz<2){
+    const kzcKanitGerek = (K&&A<50) || has("saglik");
+    const duyarli = [];
+    const bil = {};
+    [["kiz","Kızamık"],["kab","Kabakulak"],["kzc","Kızamıkçık"]].forEach(([k,ad])=>{
+      const v=H[k];
+      if(v==="bagisik") return;
+      if(!dogumOk && v!=="degil" && (k!=="kzc" || !kzcKanitGerek)) return; // 1957 öncesi doğum: bağışık kabul
+      duyarli.push(ad); bil[k]=v;
+    });
+    if(duyarli.length){
+      const ikiW=[];
+      [["salgin"],["universite"],["yurt1"],["isEvHalki"],["hiv200"],["hkhn"],["saglik"],["sYuksekRisk"]].forEach(([k])=>has(k)&&ikiW.push(RLABEL[k]));
+      if(travel && !has("sYuksekRisk")) ikiW.push("Uluslararası seyahat");
+      const sadeceKzc = duyarli.length===1 && duyarli[0]==="Kızamıkçık";
+      const negatifler = duyarli.filter((_,i)=>Object.values(bil)[i]==="degil");
+      const w=[`Bağışıklık kanıtı yok / seronegatif: ${duyarli.join(", ")}`];
+      if(!dogumOk) w.push("1957 öncesi doğum: kızamık ve kabakulağa bağışık kabul edilir; kızamıkçık kanıtı gerekli");
+      let n;
+      if(kkkDoz===1) n = ikiW.length ? 1 : 0;
+      else n = (ikiW.length && !sadeceKzc) ? 2 : 1;
+      if(kkkDoz===1 && n===0 && negatifler.length) n=1;
+      if(n>0){
+        const o={level:"bagisiklik",why:w.concat(kkkDoz===1?["Tek doz KKK almış"]:[]).concat(ikiW),
+          schema:n===2?"En az 28 gün arayla 2 doz KKK.":(kkkDoz===1?"Eksik 2. doz KKK (seri yeniden başlatılmaz).":(sadeceKzc?"Tek doz KKK (kızamıkçıkta tek doz yeterli).":"En az 1 doz KKK.")),doses:n===2?[0,28]:[0]};
+        const neden = liveWhy.slice(); if(has("aNeomisin")) neden.push("Neomisin anafilaksisi");
+        if(neden.length){ toContra("mmr","mmr",o.why,neden); if(gebe && duyarli.includes("Kızamıkçık")) info.push("Kızamıkçığa bağışık olmayan gebe doğumdan hemen sonra KKK ile aşılanmalı."); }
+        else {
+          const r=add("mmr",o);
+          if(duyarli.length<3) r.notes.push("Türkiye'de tekli kızamık, kabakulak veya kızamıkçık aşısı yok; tek bileşene duyarlılıkta da kombine KKK uygulanır. Diğer bileşenlere bağışık olmak aşıya engel değildir.");
+          if(has("salgin") && duyarli.includes("Kabakulak")) r.notes.push("Kabakulak salgınında 3. doz gerekebilir.");
+          if(K&&A<50) r.notes.push("Aşıdan sonra 4 hafta gebelikten korunmalı.");
+          if(has("isPlan")||has("sonAday")||has("splenPlan")) r.notes.push("İmmünsüpresyon/nakilden en az 4 hafta önce tamamlanmalı.");
+          r.notes.push("Rutin seroloji gerekmez; kanıt yoksa aşılamanın yararı olası istenmeyen etkilerden fazladır. Diğer canlı aşılarla aynı gün ya da 28 gün arayla; TDT aynı gün veya 4–6 hafta sonra.");
+        }
+      }
+    }
+  }
+
+  /* Suçiçeği (3.5): aşı dozu, VZV IgG ve öykü ayrı ayrı */
+  {
+    const vDoz = parseInt(H.variDoz,10)||0;
+    const oykuYetmez = has("saglik")||has("sonAday")||has("isPlan")||has("hemMal")||has("solidTm")||hivAny||has("pid");
+    const oykuVar = H.variOyku==="suc"||H.variOyku==="zona";
+    let bagisik = vDoz>=2 || H.variIgg==="pozitif" || (oykuVar && H.variIgg!=="degil" && !oykuYetmez);
+    if(oykuVar && H.variIgg==="bilinmiyor" && oykuYetmez && vDoz<2) info.push("Suçiçeği: öykü var ancak bu risk grubunda (sağlık çalışanı, nakil/immünsüpresyon öncesi, HIV, malignite) bağışıklık suçiçeği IgG ile doğrulanmalı; negatifse aşılanır.");
+    if(vDoz>=2 && H.variIgg==="degil") info.push("Suçiçeği: 2 doz aşılı kişide suçiçeği IgG negatifliği ek doz gerektirmez; ticari testler aşı yanıtını yakalamakta duyarsızdır.");
+    if(!bagisik && !(oykuVar && oykuYetmez && H.variIgg==="bilinmiyor")){
+      const w=[];
+      ["saglik","isEvHalki","hiv200","ogretmen","hkhn","sYuksekRisk","sonAday","isPlan"].forEach(k=>has(k)&&w.push(RLABEL[k]));
+      if(K&&A<50) w.push("Doğurganlık çağında kadın");
+      if(travel&&!has("sYuksekRisk")) w.push("Uluslararası seyahat");
+      const neden0=[];
+      if(H.variIgg==="degil") neden0.push("Suçiçeği IgG negatif");
+      else neden0.push("Bağışıklık kanıtı yok (kayıtlı 2 doz aşı, suçiçeği IgG pozitifliği ya da güvenilir öykü yok)");
+      if(vDoz===1) neden0.push("Tek doz suçiçeği aşısı yapılmış");
+      const n = vDoz===1?1:2;
+      const o={level:"bagisiklik",onDefault:H.variIgg==="degil"||vDoz===1,why:neden0.concat(w),schema:n===2?(has("saglik")?"2 doz, 4–8 hafta arayla (sağlık çalışanında 8 hafta).":"2 doz, 4–8 hafta arayla."):"Eksik 2. doz (seri yeniden başlatılmaz).",doses:n===2?[0,has("saglik")?56:42]:[0]};
+      const neden = liveWhy.slice(); if(has("aNeomisin")) neden.push("Neomisin anafilaksisi"); if(has("tbc")) neden.push("Tedavi edilmemiş tüberküloz");
+      if(neden.length){ toContra("vari","vari",o.why,neden); if(gebe) info.push("Suçiçeğine bağışık olmayan gebe doğumdan sonra aşılanmalı; emzirme engel değildir."); }
+      else {
+        const r=add("vari",o);
+        if(H.variIgg==="bilinmiyor"&&vDoz===0) r.warn.push("Erişkinlerin çoğu bağışıktır: aşı öncesi suçiçeği IgG bakılması önerilir; negatifse aşılanır. (Reçeteye eklemek için kutuyu işaretleyin.)");
+        if(K&&A<50) r.notes.push("Aşıdan sonra 1 ay gebelikten korunmalı.");
+        if(has("isPlan")||has("sonAday")) r.notes.push("Seri immünsüpresyon/nakilden en az 4 hafta önce tamamlanmalı.");
+        r.notes.push("Asiklovir/valasiklovir aşıdan 24 saat önce kesilmeli, 14 gün başlanmamalı. Diğer canlı aşılarla aynı gün ya da en az 4 hafta arayla.");
+      }
+    }
+  }
+
+  /* Rekombinant zona (3.6) */
+  const rzvImm = hivAny||has("hemMal")||has("kemo")||has("solidTm")||has("hkhn")||has("carT")||has("sonAday")||has("sonAlici")||has("pid")||has("isTedavi")||has("isPlan")||has("steroid")||has("antiCD20")||has("kbhIleri");
+  const rzvDone = parseInt(H.rzv,10)||0;
+  if(rzvDone<2 && (A>=50 || rzvImm)){
+    const w=[]; if(A>=50) w.push("50 yaş ve üzeri"); if(rzvImm) w.push("18 yaş üzeri, zona riski artmış (immün yetmezlik/immünsüpresyon)");
+    const kisa = rzvImm;
+    const o={level:A>=50&&!rzvImm?"rutin":"risk",why:w.concat(rzvDone===1?["Tek doz yapılmış"]:[]),schema:rzvDone===1?"Eksik 2. doz.":(kisa?"2 doz, 1–2 ay (en az 4 hafta) arayla.":"2 doz, 2–6 ay arayla."),doses:rzvDone===1?[0]:(kisa?[0,30]:[0,60])};
+    if(gebe) toContra("rzv","rzv",o.why,["Gebelik: doğum sonrasına ertelenir"]);
+    else { const r=add("rzv",o); r.notes.push("Zona veya suçiçeği öyküsü sorgulanmaz; zona geçirenlere lezyonlar iyileştikten sonra yapılır."); if(has("hkhn")) r.notes.push("Otolog HKHN'de 3. aydan, diğerlerinde 6. aydan sonra; aşı sonrası 1 ay antiviral profilaksiye devam."); if(has("carT")) r.notes.push("CAR-T sonrası en az 1 yıl (immünsüpresiften 8 ay) sonra düşünülebilir."); if(has("sonAday")) r.notes.push("Nakilden en az 2 hafta önce tamamlanmalı."); }
+  }
+
+  /* RSV (3.14, 4.8) */
+  if(!H.rsv){
+    if(gebe){
+      add("rsv",{level:"rutin",why:["Gebelik (bebeği korumak için)"],schema:"32–36. gebelik haftasında tek doz, Eylül–Ocak arasında. Gebelikte yalnızca Abrysvo ruhsatlıdır."});
+    } else {
+      const w=[];
+      const rsvRisk=["kalp","akciger","kbhIleri","dmKomp","noro","karaciger","hemoglobinopati","obezite","bakimevi","kirilgan","sonAday","sonAlici","aspleni"];
+      rsvRisk.forEach(k=>has(k)&&w.push(RLABEL[k])); if(immComp) w.push("Orta–ağır immün yetmezlik"); if(has("dm")&&!has("dmKomp")&&A>=50) w.push("Diyabetes mellitus");
+      if(A>=75) add("rsv",{level:"rutin",why:["75 yaş ve üzeri"].concat(w),schema:"Tek doz; rapel önerilmez. Tercihen Ağustos–Ekim."});
+      else if(A>=50&&w.length) add("rsv",{level:"risk",why:["50–74 yaş, ağır RSV riski"].concat(w),schema:"Tek doz; rapel önerilmez. Tercihen Ağustos–Ekim."});
+      else if(A>=18&&(immComp||has("akciger"))) { const r=add("rsv",{level:"risk",onDefault:false,why:["18–49 yaş"].concat(w),schema:"Tek doz değerlendirilebilir; bu yaşta veri sınırlı, bireysel karar."}); r.notes.push("Rehber: immünkompromize ve kronik akciğer hastalığı olan genç erişkinlerde önerilebilir (sınırlı veri)."); }
+    }
+    if(recs.rsv && (has("carT")||has("antiCD20"))) recs.rsv.notes.push("CAR-T / B hücre baskılayıcı tedaviden 6 ay sonra.");
+  }
+
+  /* HPV (3.9) */
+  const hpvDone=parseInt(H.hpv,10)||0;
+  if(hpvDone<3){
+    if(A<=45){
+      const w=["45 yaş ve altı, seri tamamlanmamış"]; if(hivAny) w.push("HIV (CD4'ten bağımsız 3 doz)"); if(immComp&&!hivAny) w.push("Bağışıklık baskılanması"); if(has("sonAday")||has("sonAlici")) w.push("Solid organ nakli");
+      const kalan=3-hpvDone; const off=[0,60,180].slice(hpvDone); const base=off[0];
+      const o={level:(hivAny||immComp||has("sonAlici"))?"risk":"rutin",why:w,schema:hpvDone?`Kalan ${kalan} doz tamamlanır (0, 1–2, 6. ay şeması).`:"3 doz: 0., 1–2. ve 6. ay; tüm dozlar 1 yıl içinde.",doses:off.map(x=>x-base)};
+      if(gebe) toContra("hpv","hpv",o.why,["Gebelik: seri doğum sonrası tamamlanır"]);
+      else if(has("aMaya")) toContra("hpv","hpv",o.why,["Maya anafilaksisi"]);
+      else { const r=add("hpv",o); r.notes.push("Smear/HPV DNA ile tarama aşılı kişilerde de sürdürülmeli."); if(hpvDone) r.notes.push("Önceki 4 valanlı aşı yapılanlarda 9 valanlı şema önerilir."); }
+    } else info.push("HPV: 45 yaş üstünde aşılama bireysel karardır; eksik doz kaldıysa tamamlanır.");
+  }
+
+  /* Meningokok (3.8) */
+  const menYuksek = ["aspleni","splenPlan","kompEks","kompInh"].filter(has).map(k=>RLABEL[k]); if(hivAny) menYuksek.push("HIV");
+  const menTek = ["lab","sHac","sMenKusak","yurt1","asker"].filter(has).map(k=>RLABEL[k]);
+  if(menYuksek.length || menTek.length || (A>=18&&A<=23&&H.menacwy==="yok")){
+    let r;
+    if(menYuksek.length){
+      r=add("menacwy",{level:"risk",why:menYuksek.concat(menTek),schema:H.menacwy==="var"?"Primer seri yapılmışsa: son dozdan 5 yıl geçtiyse 1 rapel doz, sonra 5 yılda bir.":"En az 8 hafta arayla 2 doz; risk sürdükçe 5 yılda bir rapel.",doses:H.menacwy==="var"?[0]:[0,56]});
+    } else if(menTek.length){
+      r=add("menacwy",{level:(has("sHac")||has("sMenKusak"))?"seyahat":"risk",why:menTek,schema:H.menacwy==="var"?"Son dozdan 5 yıl geçtiyse 1 rapel doz.":"Tek doz"+((has("lab")||has("sMenKusak"))?"; risk sürdükçe 5 yılda bir rapel.":".")});
+    } else {
+      r=add("menacwy",{level:"rutin",why:["Sağlıklı 16–23 yaş, 16 yaş sonrası aşılanmamış"],schema:"Tek doz."});
+    }
+    if(has("sHac")) r.warn.push("Hac/Umre için zorunlu: Uluslararası Aşı Sertifikası (ICVP) düzenlenmeli.");
+    if(has("kompInh")) r.notes.push("İdeal olarak kompleman inhibitörünün ilk dozundan ≥2 hafta önce tamamlanmalı; antibiyotik profilaksisi düşünülebilir.");
+    if(has("splenPlan")) r.notes.push("Splenektomiden ≥2 hafta önce; acil splenektomide 14. günden sonra.");
+    r.notes.push("Tüm doz ve rapellerde mümkünse aynı ürün.");
+  }
+  const menBRisk = ["aspleni","splenPlan","kompEks","kompInh","lab"].filter(has).map(k=>RLABEL[k]); if(hivAny) menBRisk.push("HIV");
+  if(menBRisk.length || (A>=18&&A<=23&&H.menb==="yok")){
+    let r;
+    if(menBRisk.length) r=add("menb",{level:"risk",why:menBRisk,schema:H.menb==="var"?"Primer seri tamamsa: 1 yıl sonra rapel, sonra risk sürdükçe 2–3 yılda bir.":"3 doz: 0., 1–2. ve 6. ay; 1 yıl sonra rapel, sonra 2–3 yılda bir.",doses:H.menb==="var"?[0]:[0,30,180]});
+    else r=add("menb",{level:"rutin",onDefault:false,why:["Sağlıklı 16–23 yaş (tercihen 16–18)"],schema:"6 ay arayla 2 doz (hızlı koruma gerekiyorsa 0, 1–2, 6. ay).",doses:[0,180]});
+    r.warn.push("MenB aşıları birbirinin yerine kullanılamaz; tüm seri ve rapeller aynı ürünle yapılmalı.");
+  }
+
+  /* Hib (3.10) */
+  if(has("aspleni")||has("splenPlan")) add("hib",{level:"risk",why:[RLABEL[has("aspleni")?"aspleni":"splenPlan"]],schema:"Tek doz; elektif splenektomiden ≥14 gün önce, acil splenektomide en erken 14. gün."});
+  if(has("hkhn")) add("hib",{level:"risk",why:["HKHN sonrası yeniden aşılama"],schema:"Nakilden 6–12 ay sonra, en az 4 hafta arayla 3 doz.",doses:[0,30,60]});
+
+  /* Polio (3.12, 4.12.5) */
+  if(has("hkhn")) add("ipv",{level:"risk",why:["HKHN sonrası yeniden aşılama"],schema:"Nakilden 6–12 ay sonra 3 doz (0., 1., 6. ay). OPA kontrendike.",doses:[0,30,180]});
+  else if(has("sPolio")||has("gocmen")){
+    const w=[]; if(has("sPolio")) w.push(RLABEL.sPolio); if(has("gocmen")) w.push(RLABEL.gocmen);
+    add("ipv",{level:has("sPolio")?"seyahat":"risk",why:w,schema:"Çocuklukta seri tamamlanmışsa yaşam boyu tek doz İPA rapeli. Aşısız/bilinmiyorsa: 1–2 ay arayla 2 doz, 6–12 ay sonra 3. doz."});
+  }
+
+  /* Kuduz TÖP (3.11) */
+  const kW=["hayvan","doga","sKuduz"].filter(has).map(k=>RLABEL[k]);
+  if(kW.length){
+    const r=add("kuduz",{level:has("sKuduz")&&kW.length===1?"seyahat":"risk",why:kW,schema:immComp?"Temas öncesi profilaksi: 0., 7. ve 21. veya 28. gün (immünsüprese: 3 doz).":"Temas öncesi profilaksi: 0. ve 7. gün, 2 doz.",doses:immComp?[0,7,21]:[0,7]});
+    r.notes.push("Riskli işlerde 2 yılda bir antikor düzeyi; ölçülemiyorsa 2 yılda bir rapel. Temas sonrası profilaksi (TSP) ayrıca kuduz rehberine göre.");
+    r.notes.push("Kuduz aşı merkezlerinde uygulanır.");
+  }
+
+  /* COVID-19 (3.13) */
+  const cW=[]; if(A>=65) cW.push("65 yaş ve üzeri"); if(immComp) cW.push("Bağışıklık baskılanması"); if(gebe) cW.push("Gebelik");
+  ["akciger","kalp","dm","kbh","kbhIleri","karaciger","obezite","bakimevi","saglik","noro"].forEach(k=>has(k)&&cW.push(RLABEL[k]));
+  if(cW.length && H.covid!=="g2"){
+    const iki = A>=65||immComp;
+    const notes=["02.10.2026 itibarıyla Türkiye'de güncel varyant içeren COVID-19 aşısı rutin aşılama için erişilebilir değil. Aşı temin edilirse ulusal öneriler esas alınır.",
+      "Aralık: önceki dozdan sonra SPIKEVAX, COMIRNATY, NUVAXOVID için en az 8 hafta; mNEXSPIKE için tercihen 3 ay."];
+    let schema=null, why=cW.slice(), doses=[0];
+    if(H.covid==="g1"){ if(iki){ schema="2026–2027 formülünün 2. dozu, 1. dozdan yaklaşık 6 ay sonra (en az 2 ay; mNEXSPIKE 3 ay)."; why.push("2026–2027 formülünden 1 doz yapılmış"); } }
+    else {
+      schema = iki?"2026–2027 formülünden yaklaşık 6 ay arayla 2 doz (önceki aşılanmadan bağımsız).":"2026–2027 formülünden 1 doz (önceki aşılanmadan bağımsız).";
+      if(iki) doses=[0,180];
+      if(H.covid==="yok"){ why.push("Daha önce COVID-19 aşısı yok / bilinmiyor"); if(immComp){ schema="Hiç aşılanmamış bağışıklığı baskılanmış hasta: standart şema uygulanmaz; ürüne göre primer seri (mRNA aşılarında genellikle 3 doz) ve ardından güncel dozlar planlanır."; doses=[0]; } }
+      if(H.covid==="eski") why.push("Önceki sezon(lar)da aşılı; 2026–2027 dozu yok");
+      if(H.covid==="yakin") notes.unshift("Son doz 8 haftadan yeni: güncel doz en erken son dozdan 8 hafta (mNEXSPIKE 3 ay) sonra.");
+    }
+    if(H.covidEnf) notes.push("Son 3 ayda COVID-19 geçirmiş: aşı semptom başlangıcı ya da pozitif testten itibaren 3 aya kadar ertelenebilir (zorunlu bekleme değildir).");
+    if(schema) add("covid",{level:"bilgi",orderable:true,onDefault:false,why,schema,doses,notes});
+  }
+
+  /* Seyahat aşıları (4.12) */
+  if(has("sTifo")) add("tifo",{level:"seyahat",why:[RLABEL.sTifo],schema:"Tek doz, seyahatten 10–14 gün önce; risk sürerse 2 yılda bir.",notes:["Koruyuculuk %50–70; gıda-su önlemleri sürmeli."].concat(gebe?["Gebelikte rutin önerilmez; risk yüksekse risk-yarar değerlendirmesiyle."]:[])});
+  if(has("sSari")){
+    const o={level:"seyahat",why:[RLABEL.sSari],schema:"Tek doz, ömür boyu geçerli; seyahatten en az 10 gün önce.",notes:["Uluslararası belge (ICVP) gerektirir. Seyahat Sağlığı Merkezlerinde uygulanır."]};
+    const n=liveWhy.filter(x=>!/IVIG/.test(x)); if(has("aYumurta")) n.push("Ağır yumurta alerjisi");
+    if(n.length){ toContra("sari","sari",o.why,n.concat(gebe?["Gebelikte seyahat ertelenemiyorsa risk-yarar değerlendirmesiyle uygulanabilir"]:[])); }
+    else { const r=add("sari",o); if(has("hiv200")) r.notes.push("HIV'de CD4 ≥200/mm³ ise uygulanabilir."); }
+  }
+  if(has("sJe")) add("je",{level:"seyahat",why:[RLABEL.sJe],schema:"İnaktif aşı 2 doz, 0. ve 28. gün; 2. doz seyahatten ≥1 hafta önce. Risk sürerse 12 ay sonra rapel.",doses:[0,28]});
+  if(has("sTbe")) add("tbe",{level:"seyahat",why:[RLABEL.sTbe],schema:"3 doz: 0., 1–3. ay ve 5–12. ay (FSME-IMMUN) / 9–12. ay (Encepur). Hızlı şema mümkün. İlk rapel 3 yıl sonra.",doses:[0,30,180]});
+  if(has("sKolera")) add("kolera",{level:"seyahat",why:[RLABEL.sKolera],schema:"Oral 2 doz, 1–6 hafta arayla; yemekten en az 1 saat önce.",doses:[0,14]});
+  if(has("sMpox")) add("mpox",{level:"seyahat",why:[RLABEL.sMpox],schema:"2 doz, 0. ve 28. gün; koruma 2. dozdan 2 hafta sonra.",doses:[0,28]});
+  if(has("sDengue")) info.push("Dengue (Qdenga) ve Chikungunya aşıları Türkiye'de rutin kullanımda değil; yolcu sivrisinek korunması konusunda bilgilendirilmeli.");
+  if(travel) info.push("Seyahat: aşılar tercihen 4–6 hafta önce planlanmalı, en geç 10–14 gün önce tamamlanmalı. Güncel ülke riskleri: seyahatsagligi.gov.tr; danışma hattı 444 77 34.");
+
+  /* Zamanlama uyarıları */
+  if(has("isPlan")||has("sonAday")||has("splenPlan")) info.push("Tedavi/nakil/splenektomi öncesi: inaktif aşılar en az 2 hafta, canlı aşılar en az 4 hafta önce tamamlanmalı.");
+  if(has("kemo")) info.push("Kemoterapi sırasında yapılan inaktif aşılara yanıt düşük olabilir; tedavi öncesi yapılamadıysa bitiminden ≥3 ay sonra (anti-CD20/alemtuzumabda ≥6 ay). İnfluenza mevsiminde ertelenmez.");
+  if(has("antiCD20")) info.push("Rituksimab: influenza dışındaki inaktif aşılar mümkünse bir sonraki dozdan ≥2 hafta önce; canlı aşılar son dozdan ≥6 ay sonra.");
+  if(has("sonAlici")) info.push("Solid organ nakli alıcısı: aşılamaya nakilden 3–6 ay sonra başlanır; canlı aşılar kontrendike. Aşı yanıtı ≥4 hafta sonra serolojiyle değerlendirilmeli.");
+  if(has("hkhn")) info.push("HKHN: inaktif aşılar genelde 6–12. ayda, pnömokok 3–6. ayda başlar (Rehber Tablo 4.1.2). Canlı aşılar en erken 24. ayda.");
+  if(has("isEvHalki")) info.push("İmmün baskılanmış kişinin ev halkı: yıllık influenza; bağışık değilse KKK ve suçiçeği. OPA ve canlı intranazal influenza verilmez.");
+  if(has("aMaya")&&recs.hbv){ toContra("hbv","hbv",recs.hbv.why,["Maya anafilaksisi"]); delete recs.hbv; }
+  if(H.hbv==="bilinmiyor"&&!recs.hbv&&!hbW.length) info.push("Hepatit B: bağışıklık durumu bilinmiyor. Kayıt/güvenilir öykü yoksa seroloji ile değerlendirilip bağışık olmayanlara 0-1-6 ay şemasıyla aşı önerilir.");
+
+  const order=["flu","tdap","td","pcv20","rzv","rsv","hbv","hav","mmr","vari","hpv","menacwy","menb","hib","ipv","kuduz","tifo","sari","je","tbe","kolera","mpox","covid"];
+  const list = order.filter(k=>recs[k]).map(k=>recs[k]);
+  return {list, contra, info, age, gebe};
+}
+
+/* ---------- Tarih yardımcıları ---------- */
+function addDays(iso,d){ const t=new Date((iso||new Date().toISOString().slice(0,10))+"T12:00:00"); t.setDate(t.getDate()+d); return t; }
+const fmt = d => d.toLocaleDateString("tr-TR",{day:"2-digit",month:"2-digit",year:"numeric"});
+function doseDates(r){
+  const lbl = r.doseLbl || r.doses.map((_,i)=>r.doses.length>1?`${i+1}. doz`:"Tek doz");
+  return r.doses.map((d,i)=>({lbl:lbl[i], tarih:fmt(addDays(S.p.tarih,d)), ilk:i===0}));
+}
+const LEVEL = {rutin:"Rutin",risk:"Riske göre",bagisiklik:"Bağışık değilse",seyahat:"Seyahat",bilgi:"Bilgi / erişim yok"};
+
+/* ---------- Render ---------- */
+const STEPS = ["Hasta","Risk faktörleri","Aşı öyküsü","Öneriler","Reçete","Reçetelerim"];
+let R = compute();
+
+function prodOptions(r){
+  let list = PROD[r.vac]||[];
+  if(r.key==="rsv" && R.gebe) list = list.filter(p=>/Abrysvo/.test(p[0]));
+  return list;
+}
+function defaultProd(r){
+  let list = prodOptions(r).filter(p=>p[2]!=="yok");
+  if(S.r.has("aJelatin")) { const nj=list.filter(p=>!/^Jelatin/.test(p[3]||"")); if(nj.length) list=nj; }
+  if(r.key==="pcv20") list=list.filter(p=>!/\+/.test(p[0]));
+  return list.length ? prodLabel(list[0]) : (VAC[r.vac].urun[0]);
+}
+function syncSel(){
+  R.list.forEach(r=>{
+    if(!sel[r.key]) sel[r.key]={on:r.orderable && r.onDefault, urun:defaultProd(r), adet:1, elle:false};
+    if(!sel[r.key].manual) sel[r.key].on = r.orderable && r.onDefault;
+    const ok = prodOptions(r).some(p=>prodLabel(p)===sel[r.key].urun);
+    if(!sel[r.key].elle && !ok) sel[r.key].urun = defaultProd(r);
+    if(S.r.has("aJelatin") && /^Jelatin/.test(prodNote(r.vac,sel[r.key].urun))) sel[r.key].urun = defaultProd(r);
+  });
+}
+function prodSelect(r){
+  const s=sel[r.key]; const opts=prodOptions(r);
+  const groups=[...new Set(opts.map(p=>p[4]||""))];
+  const optHtml = p=>{ const l=prodLabel(p); return `<option value="${esc(l)}"${!s.elle&&s.urun===l?" selected":""}>${esc(l)}</option>`; };
+  const body = groups.length>1 ? groups.map(g=>`<optgroup label="${esc(g)}">${opts.filter(p=>(p[4]||"")===g).map(optHtml).join("")}</optgroup>`).join("") : opts.map(optHtml).join("");
+  const note = s.elle ? "" : prodNote(r.vac,s.urun);
+  const jel = S.r.has("aJelatin") && /^Jelatin/.test(note);
+  const yok = !s.elle && / · Türkiye'de yok$/.test(s.urun);
+  return `<select data-urunsel="${r.key}" aria-label="Ürün">${body}<option value="__elle"${s.elle?" selected":""}>Diğer (elle yazın)…</option></select>
+   ${s.elle?`<input type="text" data-urun="${r.key}" value="${esc(s.urun)}" placeholder="Ürün adı" aria-label="Ürün adı">`:""}
+   ${note||yok||jel?`<div class="note" style="flex-basis:100%">${note?esc(note):""}${yok?`<span class="warnline"> Bu ürün rehbere göre Türkiye'de bulunmuyor.</span>`:""}${jel?`<span class="warnline"> Jelatin anafilaksisi var: bu ürünü seçmeyin.</span>`:""}</div>`:""}`;
+}
+function renderSteps(){
+  const n = R.list.filter(r=>sel[r.key]&&sel[r.key].on).length;
+  $("#steps").innerHTML = STEPS.map((s,i)=>`<button type="button" data-step="${i}" ${i===step?'aria-current="step"':""}><span class="n">${i+1}</span>${s}${i===3?` <span class="badge">${R.list.length}</span>`:""}${i===4&&n?` <span class="badge">${n}</span>`:""}${i===5&&arsiv.length?` <span class="badge">${arsiv.length}</span>`:""}</button>`).join("");
+}
+function renderAside(){
+  const p=S.p;
+  const yas = R.age!=null ? `${R.age} yaş` : "yaş girilmedi";
+  $("#aside").innerHTML = `<h3>Özet</h3><p class="pt">${esc(p.ad||"İsimsiz hasta")} · ${yas} · ${p.cins==="K"?"Kadın":"Erkek"}${R.gebe?" · Gebe":""}<br>${S.r.size} risk faktörü</p>
+  <h3>Önerilen aşılar</h3>${R.list.length?`<ol>${R.list.map(r=>`<li>${esc(VAC[r.vac].ad.split(" (")[0])}</li>`).join("")}</ol>`:'<p class="pt">Öneri yok.</p>'}
+  ${R.contra.length?`<div class="contra"><b>Uygulanmamalı:</b> ${R.contra.map(c=>esc(VAC[c.vac].ad.split(" (")[0])).join(", ")}</div>`:""}`;
+}
+function navHtml(){
+  return `<div class="nav"><button type="button" class="btn" data-go="${step-1}" ${step===0?"disabled":""}>Geri</button>${step<4?`<button type="button" class="btn primary" data-go="${step+1}">${STEPS[step+1]} →</button>`:""}</div>`;
+}
+function exampleBar(){
+  return ornekMi?`<div class="example">Örnek hasta yüklü: 67 yaş, komplike diyabet, KOAH, sigara. Kendi hastanız için formu temizleyin.<button type="button" class="btn" id="temizle">Formu temizle</button></div>`:`<div class="nav" style="justify-content:flex-end"><button type="button" class="btn" id="yeniHasta">Yeni hasta</button></div>`;
+}
+
+function renderHasta(){
+  const p=S.p;
+  return `<section class="panel">${exampleBar()}
+  <div class="card"><h2>Hasta bilgileri</h2><p class="sub">Yaş, doğum yılından ${YIL} yılına göre hesaplanır. Doğum yılı KKK (1957) ve Td (1985) değerlendirmesinde de kullanılır.</p>
+  <div class="grid">
+   <label class="f"><span>Ad soyad</span><input type="text" id="p_ad" value="${esc(p.ad)}" autocomplete="off"></label>
+   <label class="f"><span>Doğum yılı</span><input type="number" id="p_dy" min="1910" max="${YIL-18}" value="${esc(p.dy)}" inputmode="numeric"></label>
+   <div class="f" style="display:grid;gap:5px;font-size:.84rem;color:var(--muted)"><span style="font-weight:500">Cinsiyet</span><div class="seg" role="group" aria-label="Cinsiyet"><button type="button" data-cins="K" aria-pressed="${p.cins==="K"}">Kadın</button><button type="button" data-cins="E" aria-pressed="${p.cins==="E"}">Erkek</button></div></div>
+   ${p.cins==="K"?`<label class="f"><span>Gebelik durumu</span><select id="p_gebe"><option value="yok"${p.gebe==="yok"?" selected":""}>Gebe değil</option><option value="gebe"${p.gebe==="gebe"?" selected":""}>Gebe</option><option value="emziren"${p.gebe==="emziren"?" selected":""}>Emziriyor</option><option value="planliyor"${p.gebe==="planliyor"?" selected":""}>Gebelik planlıyor</option></select></label>`:""}
+   ${p.cins==="K"&&p.gebe==="gebe"?`<label class="f"><span>Gebelik haftası</span><input type="number" id="p_hafta" min="1" max="42" value="${esc(p.hafta)}"></label>`:""}
+   <label class="f"><span>Protokol no (arşivde hastayı bulmak için)</span><input type="text" id="p_prot" value="${esc(p.prot)}"></label>
+   <label class="f"><span>Muayene tarihi</span><input type="date" id="p_tarih" value="${esc(p.tarih)}"></label>
+  </div></div>${navHtml()}</section>`;
+}
+let filtre="";
+function renderRisk(){
+  const f=filtre.toLocaleLowerCase("tr");
+  return `<section class="panel">${exampleBar()}<div class="card"><h2>Risk faktörleri</h2><p class="sub">Uygun olanların hepsini işaretleyin. Öneriler anında güncellenir.</p>
+  <input type="text" class="filter" id="filtre" placeholder="Ara: ör. diyaliz, aspleni, Hac" value="${esc(filtre)}" aria-label="Risk faktörü ara">
+  ${RISK.map((g,gi)=>{
+    const its=g.items.filter(([k,l])=>!f||l.toLocaleLowerCase("tr").includes(f));
+    if(!its.length) return "";
+    const c=g.items.filter(([k])=>S.r.has(k)).length;
+    return `<div class="group"><h3>${g.g}${c?` <span class="cnt">${c} seçili</span>`:""}</h3><div class="chips">${its.map(([k,l])=>`<label><input type="checkbox" data-risk="${k}" ${S.r.has(k)?"checked":""}>${esc(l)}</label>`).join("")}</div></div>`;
+  }).join("")}</div>${navHtml()}</section>`;
+}
+function sel_(id,val,opts){ return `<select id="${id}">${opts.map(([v,l])=>`<option value="${v}"${val===v?" selected":""}>${l}</option>`).join("")}</select>`; }
+function renderOyku(){
+  const h=S.h;
+  return `<section class="panel"><div class="card"><h2>Aşı öyküsü ve bağışıklık</h2><p class="sub">Kayıt veya güvenilir öykü yoksa “bilinmiyor” seçin; sihirbaz seroloji ya da aşısız kabul önerir.</p>
+  <div class="hist">
+   <label class="f"><span>Tetanoz-difteri</span>${sel_("h_td",h.td,[["lt5","Primer seri tamam, son doz <5 yıl"],["5_10","Primer seri tamam, son doz 5–10 yıl"],["gt10","Primer seri tamam, son doz >10 yıl"],["eksik","Eksik / hiç aşılanmamış (<3 doz)"],["bilinmiyor","Bilinmiyor"]])}</label>
+   <label class="check"><input type="checkbox" id="h_tdap" ${h.tdap?"checked":""}> Erişkin dönemde Tdap yapıldı</label>
+   <label class="f"><span>Pnömokok</span>${sel_("h_pn",h.pn,[["yok","Yapılmadı"],["bilinmiyor","Bilinmiyor"],["pcv13","Yalnız PCV13"],["ppsv23","Yalnız PPSV23"],["pcv13ppsv23_lt65","PCV13 + PPSV23 (PPSV23 65 yaş öncesi)"],["pcv13ppsv23_ge65","PCV13 + PPSV23 (PPSV23 65 yaş sonrası)"],["pcv20","PCV20 yapıldı"]])}</label>
+   <label class="f"><span>Rekombinant zona (RZV)</span>${sel_("h_rzv",h.rzv,[["0","Yapılmadı"],["1","1 doz"],["2","2 doz (tamam)"]])}</label>
+   <label class="f"><span>HPV</span>${sel_("h_hpv",h.hpv,[["0","Yapılmadı"],["1","1 doz"],["2","2 doz"],["3","Seri tamam"]])}</label>
+   <label class="f"><span>MenACWY</span>${sel_("h_menacwy",h.menacwy,[["yok","Yapılmadı / 16 yaş öncesi"],["var","Yapıldı (primer seri)"]])}</label>
+   <label class="f"><span>MenB</span>${sel_("h_menb",h.menb,[["yok","Yapılmadı"],["var","Primer seri yapıldı"]])}</label>
+   <label class="f"><span>Hepatit B serolojisi / aşı öyküsü</span>${sel_("h_hbv",h.hbv,[["bilinmiyor","Bilinmiyor / seroloji yok"],["degil","HBsAg, anti-HBs, anti-HBc total negatif"],["bagisik","Bağışık (anti-HBs ≥10 mIU/mL ya da anti-HBc + anti-HBs pozitif)"],["asili","3 doz aşı kaydı var, anti-HBs bilinmiyor"],["izole","İzole anti-HBc pozitif (HBsAg ve anti-HBs negatif)"],["hbsag","HBsAg pozitif"],["yanitsiz","İki tam seriye rağmen anti-HBs <10 (yanıtsız)"]])}</label>
+   <label class="f"><span>Hepatit A serolojisi / aşı öyküsü</span>${sel_("h_hav",h.hav,[["bilinmiyor","Bilinmiyor / seroloji yok"],["degil","Anti-HAV IgG negatif"],["igg","Anti-HAV IgG pozitif"],["gecirilmis","Laboratuvarla doğrulanmış geçirilmiş hepatit A"],["asi2","2 doz hepatit A aşısı kaydı"],["asi1","1 doz hepatit A aşısı (eksik seri)"]])}</label>
+   <label class="f"><span>KKK aşı öyküsü</span>${sel_("h_kkkDoz",h.kkkDoz,[["0","Kayıtlı doz yok / bilinmiyor"],["1","1 doz KKK"],["2","2 doz KKK (bağışık kabul)"]])}</label>
+   <label class="f"><span>Kızamık bağışıklığı</span>${sel_("h_kiz",h.kiz,[["bilinmiyor","Kanıt yok / bilinmiyor"],["degil","IgG negatif"],["bagisik","IgG pozitif ya da doğrulanmış hastalık"]])}</label>
+   <label class="f"><span>Kabakulak bağışıklığı</span>${sel_("h_kab",h.kab,[["bilinmiyor","Kanıt yok / bilinmiyor"],["degil","IgG negatif"],["bagisik","IgG pozitif ya da doğrulanmış hastalık"]])}</label>
+   <label class="f"><span>Kızamıkçık bağışıklığı</span>${sel_("h_kzc",h.kzc,[["bilinmiyor","Kanıt yok / bilinmiyor"],["degil","IgG negatif"],["bagisik","IgG pozitif ya da doğrulanmış hastalık"]])}</label>
+   <label class="f"><span>Suçiçeği aşı öyküsü</span>${sel_("h_variDoz",h.variDoz,[["0","Kayıtlı doz yok / bilinmiyor"],["1","1 doz suçiçeği aşısı"],["2","2 doz suçiçeği aşısı (bağışık kabul)"]])}</label>
+   <label class="f"><span>Suçiçeği IgG</span>${sel_("h_variIgg",h.variIgg,[["bilinmiyor","Bakılmadı / bilinmiyor"],["degil","Negatif"],["pozitif","Pozitif"]])}</label>
+   <label class="f"><span>Suçiçeği / zona öyküsü</span>${sel_("h_variOyku",h.variOyku,[["yok","Yok / bilinmiyor"],["suc","Hekim tanılı ya da kayıtlı suçiçeği"],["zona","Hekim tanılı zona"]])}</label>
+   <label class="f"><span>COVID-19 aşı öyküsü</span>${sel_("h_covid",h.covid,[["yok","Hiç yapılmadı / bilinmiyor"],["eski","Önceki sezonlarda aşılı, son doz ≥8 hafta önce"],["yakin","Önceki sezonlarda aşılı, son doz <8 hafta önce"],["g1","2026–2027 formülünden 1 doz"],["g2","2026–2027 formülünden 2 doz"]])}</label>
+   <div style="display:grid;gap:8px;align-content:start"><label class="check"><input type="checkbox" id="h_flu" ${h.flu?"checked":""}> Bu mevsim influenza aşısı yapıldı</label><label class="check"><input type="checkbox" id="h_rsv" ${h.rsv?"checked":""}> Daha önce RSV aşısı yapıldı</label><label class="check"><input type="checkbox" id="h_covidEnf" ${h.covidEnf?"checked":""}> Son 3 ayda COVID-19 geçirdi</label></div>
+  </div></div>${navHtml()}</section>`;
+}
+function recCard(r){
+  const v=VAC[r.vac]; const s=sel[r.key]||{};
+  const dts = doseDates(r);
+  return `<article class="rec l-${r.level}">
+   <div class="hd"><div class="t">${esc(v.ad)}<small>${esc(v.tip)} · ${esc(v.yol)} · Rehber ${esc(v.bol)}</small></div><span class="pill p-${r.level}">${LEVEL[r.level]}</span></div>
+   <div class="why">${r.why.map(w=>`<span>${esc(w)}</span>`).join("")}</div>
+   <div class="schema">${esc(r.schema)}</div>
+   ${r.doses.length>1?`<div class="dates">Planlanan: ${dts.map(d=>`${esc(d.lbl)} ${d.tarih}`).join(" · ")}</div>`:""}
+   ${r.warn.map(w=>`<div class="warnline">⚠ ${esc(w)}</div>`).join("")}
+   ${r.notes.map(n=>`<div class="note">${esc(n)}</div>`).join("")}
+   ${r.orderable?`<div class="ord"><label class="check"><input type="checkbox" data-on="${r.key}" ${s.on?"checked":""}> Reçeteye ekle</label>
+     ${prodSelect(r)}
+     <input type="number" class="qty" min="1" max="9" data-adet="${r.key}" value="${s.adet||1}" aria-label="Adet"> <span class="note">kutu</span></div>`:""}
+  </article>`;
+}
+function renderOneri(){
+  return `<section class="panel">
+   <div class="legend">${Object.keys(LEVEL).map(k=>`<span class="pill p-${k}">${LEVEL[k]}</span>`).join("")}</div>
+   ${R.list.length?`<div class="recs">${R.list.map(recCard).join("")}</div>`:`<div class="card empty">Girilen bilgilere göre şu an önerilen aşı yok.</div>`}
+   ${R.contra.length?`<h3 class="sec-title">Şu an uygulanmamalı / ertelenmeli</h3><div class="recs contra-list">${R.contra.map(c=>`<article class="rec"><div class="hd"><div class="t">${esc(VAC[c.vac].ad)}<small>${esc(VAC[c.vac].tip)}</small></div><span class="pill p-bad">Kontrendike / ertele</span></div><div class="why">${c.why.map(w=>`<span>${esc(w)}</span>`).join("")}</div><div class="warnline">${c.reasons.map(esc).join(" · ")}</div></article>`).join("")}</div>`:""}
+   ${R.info.length?`<h3 class="sec-title">Notlar</h3><div class="infos">${R.info.map(i=>`<div>${esc(i)}</div>`).join("")}</div>`:""}
+   <p class="note">Ticari ürün adları örnektir; güncel ruhsat ve piyasa durumu kontrol edilmelidir. Öneriler klinik değerlendirmenin yerini tutmaz.</p>
+   ${navHtml()}</section>`;
+}
+
+/* ---------- Reçete ---------- */
+function chosen(){ return R.list.filter(r=>r.orderable&&sel[r.key]&&sel[r.key].on); }
+function kullanim(r){ return `${VAC[r.vac].yol}. ${r.schema}`; }
+function rxText(){
+  const p=S.p, c=chosen();
+  const L=[`AŞI REÇETESİ ${rxNo}`, `Tarih: ${fmt(addDays(p.tarih,0))}`];
+  if(hekim.adQR && p.ad) L.push(`Hasta: ${p.ad}${R.age!=null?`, ${R.age} y`:""}`);
+  c.forEach((r,i)=>{ const d=doseDates(r); L.push(`${i+1}) ${sel[r.key].urun}: ${d.length>1?d.map(x=>x.tarih).join(", "):(r.key==="flu"?"her yıl 1 doz":"tek doz")}`); });
+  if(R.contra.length) L.push("Uygulanmayacak: "+R.contra.map(x=>VAC[x.vac].ad.split(" (")[0]).join(", "));
+  L.push(`Hekim: ${[hekim.unvan,hekim.ad].filter(Boolean).join(" ")||"-"}`);
+  if(hekim.kurum||hekim.birim) L.push([hekim.kurum,hekim.birim].filter(Boolean).join(" / "));
+  L.push("Aşı kartınızı saklayın; sonraki doz tarihlerine uyun.");
+  return L.join("\n");
+}
+function qrPayload(){
+  const o={v:1,n:rxNo,d:S.p.tarih||new Date().toISOString().slice(0,10),y:R.age,c:S.p.cins,
+    h:[hekim.unvan,hekim.ad].filter(Boolean).join(" "),k:[hekim.kurum,hekim.birim].filter(Boolean).join(" / "),
+    a:chosen().map(r=>{ const e=[r.key,String(sel[r.key].urun||"").split(" – ")[0],r.doses]; if(r.doseLbl) e.push(r.doseLbl); return e; })};
+  if(hekim.adQR && S.p.ad) o.p=S.p.ad;
+  if(R.contra.length) o.x=R.contra.map(c=>c.vac);
+  return o;
+}
+function qrIcerik(){
+  if(hekim.qrMod==="metin"||!linkHazir()) return rxText();
+  const temiz=x=>String(x??"").replace(/[|;:,/]/g," ").trim();
+  const t=(S.p.tarih||new Date().toISOString().slice(0,10)).replace(/-/g,"").slice(2);
+  const asi=chosen().map(r=>{ let e=[r.key, temiz(String(sel[r.key].urun||"").split(" – ")[0].replace(/\s*\(.*?\)\s*/g," ")), r.doses.join(",")].join(":"); if(r.doseLbl) e+=":"+r.doseLbl.map(temiz).join(","); return e; }).join(";");
+  const parca=["2", rxNo.replace(/^R-\d{6}-/,""), t, R.age??"", S.p.cins, (hekim.adQR&&S.p.ad)?temiz(S.p.ad):"", asi, R.contra.map(c=>c.vac).join(",")];
+  const bytes=new TextEncoder().encode(parca.join("|")); let bin=""; bytes.forEach(x=>bin+=String.fromCharCode(x));
+  return hekim.sayfa+"#"+btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+}
+function qrSvg(text){
+  if(typeof qrcode!=="function") return {svg:"",ok:false};
+  try{
+    qrcode.stringToBytes = qrcode.stringToBytesFuncs["UTF-8"];
+    const q=qrcode(0,hekim.qrMod==="metin"?"L":"M"); q.addData(text,"Byte"); q.make();
+    return {svg:q.createSvgTag({cellSize:4,margin:4,scalable:true}),ok:true};
+  }catch(e){ return {svg:"",ok:false}; }
+}
+function paperHtml(qr){
+  const p=S.p, c=chosen();
+  const takvim = c.flatMap(r=>doseDates(r).map(d=>({asi:sel[r.key].urun,...d})));
+  return `<div class="paper" id="paper">
+   <div class="ph"><div><div class="k">${esc(hekim.kurum||"Kurum adı")}</div><div class="k">${esc(hekim.birim||"")}</div><h2>Aşı Reçetesi</h2></div>
+     <div class="k" style="text-align:right">Reçete no: <b style="font-family:var(--f-mono)">${rxNo}</b><br>Tarih: ${fmt(addDays(p.tarih,0))}</div></div>
+   <div class="meta"><div><b>Hasta:</b> ${esc(p.ad||"—")}</div><div><b>Doğum yılı / yaş:</b> ${esc(p.dy||"—")}${R.age!=null?` / ${R.age}`:""}</div><div><b>Cinsiyet:</b> ${p.cins==="K"?"Kadın":"Erkek"}${R.gebe?` · Gebe${p.hafta?` (${esc(p.hafta)}. hafta)`:""}`:""}</div>${p.prot?`<div><b>Protokol:</b> ${esc(p.prot)}</div>`:""}</div>
+   <div class="meta" style="margin-top:0"><div style="grid-column:1/-1"><b>Endikasyon / risk:</b> ${S.r.size?[...S.r].map(k=>esc(RLABEL[k])).join("; "):"Yaşa göre rutin erişkin bağışıklaması"}</div></div>
+   <div class="rx">Rp/</div>
+   ${c.length?`<ol class="items">${c.map(r=>`<li><span class="pn">${esc(sel[r.key].urun)}</span> — ${esc(VAC[r.vac].ad)} &nbsp;No: ${sel[r.key].adet} (${["","bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz"][sel[r.key].adet]||sel[r.key].adet}) kutu<br><span class="ds">S: ${esc(kullanim(r))}</span><br><span class="ic">ICD-10: ${VAC[r.vac].icd}</span></li>`).join("")}</ol>`:`<p>Reçeteye aşı eklenmedi.</p>`}
+   ${takvim.length?`<h4>Aşı takvimi</h4><table class="cal"><thead><tr><th>Aşı</th><th>Doz</th><th>Planlanan tarih</th></tr></thead><tbody>${takvim.map(t=>`<tr><td>${esc(t.asi)}</td><td>${esc(t.lbl)}</td><td>${t.tarih}</td></tr>`).join("")}</tbody></table>`:""}
+   ${R.contra.length?`<h4>Şu an uygulanmayacak aşılar</h4><div>${R.contra.map(x=>`${esc(VAC[x.vac].ad)}: ${esc(x.reasons.join(", "))}`).join("<br>")}</div>`:""}
+   <div class="foot"><div class="qr"><div class="box">${qr.svg}</div><div class="cap">${qr.ok?(hekim.qrMod==="metin"?"Telefon kamerasıyla okutun: reçete metin olarak görünür (Android önerilir).":"Telefon kamerasıyla okutun: aşılarınız ve doz tarihleriniz telefonunuzda açılır."):"Karekod oluşturulamadı."}</div></div>
+     <div class="sign">${esc([hekim.unvan,hekim.ad].filter(Boolean).join(" ")||"Hekim adı soyadı")}<br>${hekim.tescil?`Diploma tescil no: ${esc(hekim.tescil)}<br>`:""}İmza / kaşe</div></div>
+   <div class="disc">EKMUD Erişkin Bağışıklama Rehberi 2026 esas alınarak hazırlanmıştır; hekim imzası ile geçerlidir. Ticari ürün adları örnek niteliğindedir. ICD-10 kodları e-reçete sisteminde kontrol edilmelidir.</div>
+  </div>`;
+}
+function renderRecete(){
+  const text=rxText(); const qr=qrSvg(qrIcerik());
+  return `<section class="panel">
+   <div class="card"><h2>Hekim ve kurum</h2><p class="sub">Bu alanlar yalnızca bu bilgisayarda hatırlanır.</p><div class="grid">
+    <label class="f"><span>Unvan</span><input type="text" id="k_unvan" value="${esc(hekim.unvan)}"></label>
+    <label class="f"><span>Hekim adı soyadı</span><input type="text" id="k_ad" value="${esc(hekim.ad)}"></label>
+    <label class="f"><span>Diploma tescil no</span><input type="text" id="k_tescil" value="${esc(hekim.tescil)}"></label>
+    <label class="f"><span>Kurum</span><input type="text" id="k_kurum" value="${esc(hekim.kurum)}"></label>
+    <label class="f"><span>Birim</span><input type="text" id="k_birim" value="${esc(hekim.birim)}"></label>
+   </div><div class="grid" style="margin-top:12px"><label class="f"><span>Karekod türü</span><select id="k_qrMod"><option value="link"${hekim.qrMod!=="metin"?" selected":""}${linkHazir()?"":" disabled"}>Bağlantı – hasta sayfası açılır${linkHazir()?"":" (önce hasta sayfası adresini girin)"}</option><option value="metin"${hekim.qrMod==="metin"?" selected":""}>Düz metin – internetsiz (iPhone'da açılmayabilir)</option></select></label>
+   <label class="f"><span>Hasta sayfası adresi (isteğe bağlı)</span><input type="text" id="k_sayfa" value="${esc(hekim.sayfa||"")}" placeholder="https://acandevir-source.github.io/asi-recetem/"></label>
+   <label class="check" style="align-self:end"><input type="checkbox" id="k_adQR" ${hekim.adQR?"checked":""}> Karekoda hasta adını ekle</label></div></div>
+   <div class="card"><h2>Hasta için QR</h2><div class="qrbig"><div class="box">${qr.svg}</div><p>${hekim.qrMod==="metin"?"Hasta kodu telefon kamerasıyla okutur; reçete metin olarak görünür. İnternet gerekmez. iPhone kamerası düz metin karekodlarını açmayabilir; Android'de Google Lens ile okunur.":"Hasta kodu ekrandan ya da çıktıdan telefon kamerasıyla okutur; “Aşı Reçetem” sayfası açılır ve aşıları, doz tarihleri, sıradaki dozları görünür. Reçete bilgisi bağlantının # işaretinden sonraki kısmındadır; sunucuya gönderilmez, hiçbir yere kaydedilmez."} ${qr.ok?"":"<b>Karekod oluşturulamadı.</b>"}<br><span class="note">Karekod içeriği: ${hekim.qrMod==="metin"?"düz metin":`bağlantı (${esc(hekim.sayfa.replace("https://",""))}#…)`}</span> <a href="${esc(qrIcerik())}" target="_blank" rel="noopener">${hekim.qrMod==="metin"?"":"Hasta sayfasını burada aç"}</a></p></div></div>
+   <div class="actions"><button type="button" class="btn primary" id="indirPdf">PDF olarak indir</button><button type="button" class="btn" id="indir">Yazdırılabilir HTML indir</button><button type="button" class="btn" id="kopyala">Reçete metnini kopyala</button><button type="button" class="btn" id="kaydet">Arşive kaydet</button><span class="status" id="durum" role="status">${arsivDurum==="hazir"?(arsiv.some(a=>a.id===rxNo)?"Bu reçete arşivde kayıtlı; değişiklikten sonra yeniden kaydedin.":"İndirilen reçete arşive de kaydedilir (hasta adı olmadan)."):""}</span></div>
+   <div class="paper-wrap">${paperHtml(qr)}</div>
+   <textarea id="kopyaAlan" hidden readonly>${esc(text)}</textarea>
+   ${navHtml()}</section>`;
+}
+function standalone(paper){
+  const css=[...document.querySelectorAll("style")].map(s=>s.textContent).join("\n").match(/\/\* Reçete kâğıdı[\s\S]*?(?=\.actions)/);
+  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aşı Reçetesi ${rxNo}</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:wght@600&display=swap">
+<style>:root{--f-sans:"IBM Plex Sans",Arial,sans-serif;--f-serif:"IBM Plex Serif",Georgia,serif;--f-mono:"IBM Plex Mono",monospace}body{margin:0;background:#eef1f0;padding:20px}${css?css[0]:""}
+.bar{max-width:794px;margin:0 auto 12px;display:flex;gap:10px}.bar button{font:600 14px Arial;padding:8px 16px;border-radius:6px;border:1px solid #0b6b60;background:#0b6b60;color:#fff;cursor:pointer}
+@page{size:A4;margin:12mm}@media print{body{background:#fff;padding:0}.bar{display:none}.paper{border:0;box-shadow:none;padding:0;max-width:none}}</style></head>
+<body><div class="bar"><button onclick="window.print()">Yazdır</button></div>${paper||paperHtml(qrSvg(qrIcerik()))}</body></html>`;
+}
+
+/* ---------- Ana render ---------- */
+function render(){
+  R=compute(); syncSel();
+  renderSteps(); renderAside();
+  const v=[renderHasta,renderRisk,renderOyku,renderOneri,renderRecete,renderArsiv][step]();
+  $("#main").innerHTML=v;
+}
+function soft(){ R=compute(); syncSel(); renderSteps(); renderAside(); }
+
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.dataset.step!=null){ step=+t.dataset.step; render(); window.scrollTo({top:0}); return; }
+  if(t.dataset.go!=null){ step=Math.max(0,Math.min(5,+t.dataset.go)); render(); window.scrollTo({top:0}); return; }
+  if(t.dataset.cins){ S.p.cins=t.dataset.cins; if(S.p.cins==="E") S.p.gebe="yok"; ornekMi=false; render(); return; }
+  if(t.id==="temizle"||t.id==="yeniHasta"){ S=JSON.parse(JSON.stringify(BOS_DURUM)); S.r=new Set(); sel={}; ornekMi=false; step=0; filtre=""; rxNo="R-"+new Date().toISOString().slice(2,10).replace(/-/g,"")+"-"+Math.random().toString(36).slice(2,6).toUpperCase(); render(); return; }
+  if(t.id==="kopyala"){ const txt=rxText(); const d=$("#durum"); try{ await navigator.clipboard.writeText(txt); d.textContent="Reçete metni kopyalandı."; }catch(err){ const a=$("#kopyaAlan"); a.hidden=false; a.style.width="100%"; a.rows=10; a.select(); d.textContent="Kopyalama izni yok; metin seçildi, Ctrl+C ile kopyalayın."; } return; }
+  if(t.id==="indir"){
+    const d=$("#durum"); d.textContent="Hazırlanıyor…";
+    try{
+      const dl = window.claude && await window.claude.use("downloads");
+      if(!dl){ d.textContent="Bu görünümde dosya indirme kullanılamıyor. Metni kopyalayabilir ya da QR'ı ekrandan okutabilirsiniz."; return; }
+      await dl.save({filename:`asi-recetesi-${rxNo}${S.p.prot?"-"+String(S.p.prot).replace(/[^\w-]/g,""):""}.html`, data:new Blob([standalone()],{type:"text/html"})});
+      let ek=""; if(DB){ try{ await saveRecete(); ek=" Arşive de kaydedildi."; }catch(err){ ek=" Arşive kaydedilemedi."; } }
+      d.textContent="İndirildi. Dosyayı açıp “Yazdır” düğmesini kullanın; hastaya dosya olarak da gönderilebilir."+ek;
+    }catch(err){ d.textContent="İndirme tamamlanmadı ("+(err&&err.code||"iptal")+")."; }
+  }
+});
+document.addEventListener("input",e=>{
+  const t=e.target, id=t.id;
+  if(id==="filtre"){ filtre=t.value; const pos=t.selectionStart; render(); const f=$("#filtre"); f.focus(); f.setSelectionRange(pos,pos); return; }
+  if(id&&id.startsWith("p_")){ const k=id.slice(2); S.p[k]=t.value; ornekMi=false; if(k==="gebe") render(); else soft(); return; }
+  if(id&&id.startsWith("k_")){ const k=id.slice(2); hekim[k]= t.type==="checkbox"?t.checked:t.value; saveHekim(); return; }
+  if(t.dataset.urun){ sel[t.dataset.urun].urun=t.value; return; }
+  if(t.dataset.adet){ sel[t.dataset.adet].adet=Math.max(1,Math.min(9,parseInt(t.value,10)||1)); return; }
+});
+document.addEventListener("change",e=>{
+  const t=e.target, id=t.id;
+  if(t.dataset.risk){ t.checked?S.r.add(t.dataset.risk):S.r.delete(t.dataset.risk); ornekMi=false; soft(); const h=t.closest(".group").querySelector("h3"); const g=RISK.find(g=>g.g===h.firstChild.textContent); if(g){ const c=g.items.filter(([k])=>S.r.has(k)).length; h.innerHTML=g.g+(c?` <span class="cnt">${c} seçili</span>`:""); } return; }
+  if(id&&id.startsWith("h_")){ const k=id.slice(2); S.h[k]= t.type==="checkbox"?t.checked:t.value; ornekMi=false; soft(); return; }
+  if(t.dataset.on){ sel[t.dataset.on].on=t.checked; sel[t.dataset.on].manual=true; soft(); return; }
+  if(t.dataset.urunsel){ const s=sel[t.dataset.urunsel]; if(t.value==="__elle"){ s.elle=true; s.urun=""; } else { s.elle=false; s.urun=t.value; } render(); return; }
+  if(id&&id.startsWith("k_")){ const k=id.slice(2); hekim[k]= t.type==="checkbox"?t.checked:t.value; saveHekim(); if(step===4) render(); return; }
+  if(t.dataset.urun||t.dataset.adet){ if(step===4) render(); }
+});
+
+/* ---------- PDF üretimi (html2canvas + jsPDF, gerektiğinde yüklenir) ---------- */
+function scriptYukle(src){ return new Promise((ok,no)=>{ if([...document.scripts].some(x=>x.src===src)) return ok(); const el=document.createElement("script"); el.src=src; el.onload=ok; el.onerror=()=>no(new Error("yuklenemedi")); document.head.appendChild(el); }); }
+async function pdfUret(paper){
+  await scriptYukle(new URL("lib/html2canvas.min.js",location.href).href);
+  await scriptYukle(new URL("lib/jspdf.umd.min.js",location.href).href);
+  const kap=document.createElement("div");
+  kap.style.cssText="position:fixed;left:-10000px;top:0;width:794px;background:#fff;z-index:-1";
+  kap.innerHTML=paper; document.body.appendChild(kap);
+  try{
+    const el=kap.querySelector(".paper"); el.style.border="0"; el.style.boxShadow="none"; el.style.borderRadius="0"; el.style.maxWidth="794px"; el.style.margin="0";
+    for(const sv of [...kap.querySelectorAll("svg")]){
+      const src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(new XMLSerializer().serializeToString(sv));
+      const im0=new Image(); await new Promise(r=>{ im0.onload=r; im0.onerror=r; im0.src=src; });
+      const c=document.createElement("canvas"); c.width=c.height=600; const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,600,600); g.imageSmoothingEnabled=false; try{ g.drawImage(im0,0,0,600,600); }catch(e){}
+      const im=document.createElement("img"); im.src=c.toDataURL("image/png"); im.style.cssText="width:100%;height:100%;display:block"; sv.replaceWith(im);
+    }
+    await Promise.all([...kap.querySelectorAll("img")].map(im=>im.decode?im.decode().catch(()=>{}):null));
+    if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+    const cv=await window.html2canvas(el,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false});
+    const {jsPDF}=window.jspdf; const doc=new jsPDF({unit:"mm",format:"a4",orientation:"portrait"});
+    const W=210, H=297, m=8, iw=W-2*m, ih=H-2*m;
+    const pxPerMm=cv.width/iw, sayfaPx=Math.floor(ih*pxPerMm);
+    for(let y=0, i=0; y<cv.height; y+=sayfaPx, i++){
+      const h=Math.min(sayfaPx, cv.height-y);
+      const c=document.createElement("canvas"); c.width=cv.width; c.height=h;
+      c.getContext("2d").drawImage(cv,0,y,cv.width,h,0,0,cv.width,h);
+      if(i>0) doc.addPage();
+      doc.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",m,m,iw,h/pxPerMm);
+    }
+    return doc.output("blob");
+  } finally { kap.remove(); }
+}
+async function pdfIndir(paper, ad, mesajEl){
+  const dl = window.claude && await window.claude.use("downloads");
+  if(!dl){ if(mesajEl) mesajEl.textContent="Bu görünümde dosya indirme kullanılamıyor."; return false; }
+  if(mesajEl) mesajEl.textContent="PDF hazırlanıyor…";
+  const blob=await pdfUret(paper);
+  await dl.save({filename:ad+".pdf", data:blob});
+  return true;
+}
+
+/* ---------- Reçete arşivi (her hekimin özel alanı, hasta adı saklanmaz) ---------- */
+let DB=null, UID=null, arsiv=[], arsivDurum="yukleniyor", arsivFiltre="", acik=null, silOnay=null;
+function arsivYenile(){
+  renderSteps();
+  if(step===5) render();
+  const d=$("#durum"); if(step===4 && d && !d.dataset.kilit) d.textContent = arsiv.some(a=>a.id===rxNo)?"Bu reçete arşivde kayıtlı; değişiklikten sonra yeniden kaydedin.":"İndirilen reçete arşive de kaydedilir (hasta adı olmadan).";
+}
+(async()=>{
+  try{
+    if(!window.claude || !window.claude.use){ arsivDurum="yok"; arsivYenile(); return; }
+    const [db,user]=await Promise.all([window.claude.use("db"),window.claude.use("user")]);
+    const uid = user ? await user.id() : null;
+    if(!db||!uid){ arsivDurum="yok"; arsivYenile(); return; }
+    DB=db; UID=uid;
+    db.collection("data/users/"+uid).orderBy("ts","desc").limit(1000).onSnapshot(sn=>{
+      arsiv=sn.docs.map(x=>Object.assign({id:x.id},x.data())); arsivDurum="hazir"; arsivYenile();
+    }, e=>{ arsivDurum="hata"; arsivYenile(); });
+  }catch(e){ arsivDurum="yok"; arsivYenile(); }
+})();
+function kayitOlustur(){
+  const ad=S.p.ad, adQR=hekim.adQR; S.p.ad=""; 
+  const text=rxText(); const html=paperHtml(qrSvg(text));
+  S.p.ad=ad; hekim.adQR=adQR;
+  const c=chosen();
+  return {ts:Date.now(), rxNo, tarih:S.p.tarih, prot:String(S.p.prot||""), dy:String(S.p.dy||""), yas:R.age, cins:S.p.cins, gebe:S.p.gebe, hafta:String(S.p.hafta||""),
+    riskler:[...S.r], oyku:Object.assign({},S.h), sec:JSON.parse(JSON.stringify(sel)),
+    asilar:c.map(r=>sel[r.key].urun), html, qrText:text,
+    hekim:{unvan:hekim.unvan,ad:hekim.ad,tescil:hekim.tescil,kurum:hekim.kurum,birim:hekim.birim}};
+}
+async function saveRecete(){
+  if(!DB||!UID) throw {code:"yok"};
+  if(!chosen().length) throw {code:"bos"};
+  await DB.collection("data/users/"+UID).doc(rxNo).set(kayitOlustur());
+}
+function renderArsiv(){
+  if(arsivDurum==="yukleniyor") return `<section class="panel"><div class="card empty">Arşiv yükleniyor…</div>${navHtml()}</section>`;
+  if(arsivDurum!=="hazir") return `<section class="panel"><div class="card"><h2>Reçetelerim</h2><p class="sub">Arşiv açılamadı. Tarayıcı bu site için veri saklamaya izin vermiyor olabilir (gizli pencere ya da site verisi engeli).</p></div>${navHtml()}</section>`;
+  const f=arsivFiltre.toLocaleLowerCase("tr");
+  const list=arsiv.filter(a=>!f || [a.rxNo,a.prot,(a.asilar||[]).join(" "),a.tarih].join(" ").toLocaleLowerCase("tr").includes(f));
+  const ac = acik && arsiv.find(a=>a.id===acik);
+  return `<section class="panel">
+   <div class="card"><h2>Reçetelerim</h2><p class="sub">Reçeteler yalnızca bu bilgisayarda saklanır; internete ya da başka bir yere gönderilmez. Hasta adı saklanmaz; hastayı protokol numarasıyla bulun. Kayıtlı reçete uygulama güncellense de değişmez. Bilgisayar değişirse ya da tarayıcı verisi silinirse kaybolmaması için düzenli yedek alın.</p>
+   <div class="actions" style="margin-bottom:10px"><button type="button" class="btn" id="yedekAl">Arşivi yedekle (dosya)</button><label class="btn" for="yedekDosya" style="display:inline-flex;align-items:center">Yedekten geri yükle</label><input type="file" id="yedekDosya" accept=".json,application/json" hidden><span class="status" id="yedekMesaj" role="status"></span></div>
+   <input type="text" id="arsivFiltre" placeholder="Ara: protokol no, reçete no, aşı adı, tarih (yyyy-aa-gg)" value="${esc(arsivFiltre)}" aria-label="Arşivde ara">
+   </div>
+   ${list.length?`<div class="paper-wrap"><table class="arsiv"><thead><tr><th>Tarih</th><th>Reçete no</th><th>Protokol</th><th>Hasta</th><th>Aşılar</th><th></th></tr></thead><tbody>${list.map(a=>`<tr${acik===a.id?' class="sec"':""}>
+     <td class="mono">${esc(a.tarih?fmt(addDays(a.tarih,0)):"")}</td><td class="mono">${esc(a.rxNo)}</td><td>${esc(a.prot||"—")}</td>
+     <td>${a.yas!=null?esc(a.yas)+" y":"—"} · ${a.cins==="K"?"K":"E"}${a.gebe==="gebe"?" · gebe":""}</td>
+     <td>${(a.asilar||[]).map(x=>esc(x.split(" – ")[0])).join(", ")}</td>
+     <td class="act"><button type="button" class="btn" data-ac="${esc(a.id)}">${acik===a.id?"Kapat":"Görüntüle"}</button><button type="button" class="btn" data-ain="${esc(a.id)}">PDF indir</button><button type="button" class="btn" data-akop="${esc(a.id)}">Yeni reçeteye kopyala</button><button type="button" class="btn${silOnay===a.id?" danger":""}" data-asil="${esc(a.id)}">${silOnay===a.id?"Silmeyi onayla":"Sil"}</button></td></tr>`).join("")}</tbody></table></div>`
+     :`<div class="card empty">${arsiv.length?"Aramayla eşleşen reçete yok.":"Henüz kayıtlı reçete yok. Reçete adımında “Arşive kaydet” ya da “İndir” dediğinizde burada görünür."}</div>`}
+   <span class="status" id="arsivMesaj" role="status"></span>
+   ${ac?`<div class="paper-wrap">${ac.html||""}</div>`:""}
+   ${navHtml()}</section>`;
+}
+function yeniRxNo(){ return "R-"+new Date().toISOString().slice(2,10).replace(/-/g,"")+"-"+Math.random().toString(36).slice(2,6).toUpperCase(); }
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.id==="indirPdf"){
+    const d=$("#durum"); d.dataset.kilit="1";
+    try{
+      const html=paperHtml(qrSvg(qrIcerik()));
+      const ok=await pdfIndir(html,`asi-recetesi-${rxNo}${S.p.prot?"-"+String(S.p.prot).replace(/[^\w-]/g,""):""}`,d);
+      if(ok){ let ek=""; if(DB){ try{ await saveRecete(); ek=" Arşive de kaydedildi."; }catch(err){ ek=" Arşive kaydedilemedi."; } } d.textContent="PDF indirildi; doğrudan yazdırılabilir ya da hastaya gönderilebilir."+ek; }
+    }catch(err){ d.textContent = err&&err.message==="yuklenemedi" ? "PDF kütüphanesi yüklenemedi; HTML indirip tarayıcıdan “PDF olarak kaydet” seçebilirsiniz." : "PDF oluşturulamadı ("+(err&&err.code||"iptal")+")."; }
+    setTimeout(()=>{ delete d.dataset.kilit; },6000);
+    return;
+  }
+  if(t.id==="kaydet"){
+    const d=$("#durum"); d.dataset.kilit="1";
+    try{ await saveRecete(); d.textContent="Arşive kaydedildi ("+rxNo+")."; }
+    catch(err){ d.textContent = err&&err.code==="bos"?"Reçetede aşı yok; kaydedilmedi.": err&&err.code==="yok"?"Arşiv açılamadı.": err&&err.code==="quota_exceeded"?"Arşiv dolu; eski reçeteleri silin.":"Kaydedilemedi ("+(err&&err.code||"hata")+")."; }
+    setTimeout(()=>{ delete d.dataset.kilit; },4000);
+  }
+  if(t.dataset.ac){ acik = acik===t.dataset.ac?null:t.dataset.ac; silOnay=null; render(); }
+  if(t.dataset.asil){
+    const id=t.dataset.asil;
+    if(silOnay!==id){ silOnay=id; render(); return; }
+    try{ await DB.collection("data/users/"+UID).doc(id).delete(); if(acik===id) acik=null; silOnay=null; }
+    catch(err){ const m=$("#arsivMesaj"); if(m) m.textContent="Silinemedi ("+(err&&err.code||"hata")+")."; }
+  }
+  if(t.dataset.ain){
+    const a=arsiv.find(x=>x.id===t.dataset.ain); const m=$("#arsivMesaj");
+    try{ const ok=await pdfIndir(a.html,`asi-recetesi-${a.rxNo}${a.prot?"-"+String(a.prot).replace(/[^\w-]/g,""):""}`,m);
+      if(ok&&m) m.textContent="PDF indirildi. Hasta adı arşivde olmadığı için çıktıya elle yazılmalı.";
+    }catch(err){ if(m) m.textContent = err&&err.message==="yuklenemedi"?"PDF kütüphanesi yüklenemedi.":"İndirme tamamlanmadı."; }
+  }
+  if(t.dataset.akop){
+    const a=arsiv.find(x=>x.id===t.dataset.akop);
+    S={p:{ad:"",dy:a.dy||"",cins:a.cins||"K",gebe:a.gebe||"yok",hafta:a.hafta||"",prot:a.prot||"",tarih:new Date().toISOString().slice(0,10)},
+       r:new Set(a.riskler||[]), h:Object.assign(JSON.parse(JSON.stringify(BOS_DURUM.h)),a.oyku||{})};
+    sel=JSON.parse(JSON.stringify(a.sec||{})); rxNo=yeniRxNo(); ornekMi=false; acik=null; step=0; render(); window.scrollTo({top:0});
+  }
+});
+document.addEventListener("input",e=>{ if(e.target.id==="arsivFiltre"){ arsivFiltre=e.target.value; const pos=e.target.selectionStart; render(); const f=$("#arsivFiltre"); f.focus(); f.setSelectionRange(pos,pos); } });
+
+render();
+})();
+</script>
+<script>
+(function(){
+  let kurIstegi=null;
+  const btn=document.getElementById("kurBtn"), yardim=document.getElementById("kurYardim");
+  const kurulu=window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  if(!kurulu && btn) btn.hidden=false;
+  window.addEventListener("beforeinstallprompt",e=>{ e.preventDefault(); kurIstegi=e; if(btn) btn.hidden=false; });
+  window.addEventListener("appinstalled",()=>{ if(btn) btn.hidden=true; if(yardim) yardim.hidden=true; });
+  if(btn) btn.addEventListener("click",async()=>{ if(kurIstegi){ kurIstegi.prompt(); try{ await kurIstegi.userChoice; }catch(e){} kurIstegi=null; } else if(yardim){ yardim.hidden=!yardim.hidden; } });
+  document.addEventListener("click",async e=>{
+    const t=e.target.closest("button"); if(!t) return;
+    if(t.id==="yedekAl"){ const m=document.getElementById("yedekMesaj"); try{ const n=await window.yerelArsiv.disaAktar(); if(m) m.textContent=n+" reçete yedek dosyasına yazıldı; dosyayı güvenli bir yerde saklayın."; }catch(err){ if(m) m.textContent="Yedek alınamadı."; } }
+  });
+  document.addEventListener("change",async e=>{
+    if(e.target.id!=="yedekDosya") return;
+    const f=e.target.files&&e.target.files[0]; if(!f) return;
+    const m=document.getElementById("yedekMesaj");
+    const yaz=t=>setTimeout(()=>{ const m2=document.getElementById("yedekMesaj"); if(m2) m2.textContent=t; },80);
+    try{ const n=await window.yerelArsiv.iceAktar(await f.text()); yaz(n+" reçete geri yüklendi."); }
+    catch(err){ yaz("Dosya okunamadı; bu uygulamanın aldığı bir yedek dosyası seçin."); }
+    e.target.value="";
+  });
+  if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+})();
+</script>
+</body>
+</html>
